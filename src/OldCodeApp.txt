@@ -1,0 +1,1064 @@
+import { useState } from "react";
+import {
+  ShieldCheck,
+  Zap,
+  Headphones,
+  ChevronDown,
+  ChevronUp,
+  Download,
+  Star,
+  CheckCircle,
+  ArrowRight,
+  Sparkles,
+  Gift,
+  Dices,
+  Trophy,
+  Crown,
+  Gem,
+  Flame,
+  Star as StarIcon,
+  RotateCw,
+  Award,
+  Share2,
+  Lock,
+  Smartphone,
+  Wallet,
+  Check,
+} from "lucide-react";
+
+export default function OldCodeApp() {
+  const [activeRateCategory, setActiveRateCategory] = useState("all");
+  const [openFaq, setOpenFaq] = useState(null);
+
+  // Interactive Spin Wheel Demo State
+  const [isSpinning, setIsSpinning] = useState(false);
+  const [wheelRotation, setWheelRotation] = useState(0);
+  const [spinReward, setSpinReward] = useState(null);
+
+  // Interactive Scratch Card Demo State
+  const [isScratched, setIsScratched] = useState(false);
+
+  // Game Rates Data
+  const gameRatesData = {
+    all: [
+      {
+        id: "sd",
+        name: "Single Digit",
+        rate: "₹95",
+        base: "₹10 KA",
+        icon: Dices,
+        desc: "Single number prediction",
+      },
+      {
+        id: "jd",
+        name: "Jodi Digits",
+        rate: "₹950",
+        base: "₹10 KA",
+        icon: StarIcon,
+        desc: "Two digit pair market",
+      },
+      {
+        id: "sp",
+        name: "Single Pana",
+        rate: "₹1500",
+        base: "₹10 KA",
+        icon: Trophy,
+        desc: "Three unique digit pana",
+      },
+      {
+        id: "dp",
+        name: "Double Pana",
+        rate: "₹3000",
+        base: "₹10 KA",
+        icon: Gem,
+        desc: "Two identical digit pana",
+      },
+      {
+        id: "tp",
+        name: "Triple Pana",
+        rate: "₹6000",
+        base: "₹10 KA",
+        icon: Crown,
+        desc: "Three identical digit pana",
+      },
+      {
+        id: "hsa",
+        name: "Half Sangam A",
+        rate: "₹12000",
+        base: "₹10 KA",
+        icon: Zap,
+        desc: "Open Pana & Close Ank",
+      },
+      {
+        id: "hsb",
+        name: "Half Sangam B",
+        rate: "₹12000",
+        base: "₹10 KA",
+        icon: Zap,
+        desc: "Open Ank & Close Pana",
+      },
+      {
+        id: "fs",
+        name: "Full Sangam",
+        rate: "₹120000",
+        base: "₹10 KA",
+        icon: Sparkles,
+        desc: "Open Pana & Close Pana",
+      },
+    ],
+    jackpot: [
+      {
+        id: "jk",
+        name: "JACKPOT",
+        market: "MAHA MARKET",
+        rate: "₹1000",
+        base: "₹10 KA",
+        icon: Sparkles,
+        desc: "Special Maha Market Highest Payout",
+      },
+    ],
+    starline: [
+      {
+        id: "sl_sa",
+        name: "SINGLE ANK",
+        market: "SPECIAL MARKET",
+        rate: "₹100",
+        base: "₹10 KA",
+        icon: StarIcon,
+        desc: "Starline hourly single digit",
+      },
+      {
+        id: "sl_sp",
+        name: "SINGLE PANA",
+        market: "SPECIAL MARKET",
+        rate: "₹1600",
+        base: "₹10 KA",
+        icon: Trophy,
+        desc: "Starline single pana market",
+      },
+      {
+        id: "sl_dp",
+        name: "DOUBLE PANA",
+        market: "SPECIAL MARKET",
+        rate: "₹3200",
+        base: "₹10 KA",
+        icon: Gem,
+        desc: "Starline double pana market",
+      },
+      {
+        id: "sl_tp",
+        name: "TRIPLE PANA",
+        market: "SPECIAL MARKET",
+        rate: "₹6000",
+        base: "₹10 KA",
+        icon: Crown,
+        desc: "Starline triple pana market",
+      },
+    ],
+  };
+
+  const testimonials = [
+    {
+      name: "Vikram S.",
+      city: "Delhi",
+      text: "Downloaded the APK directly from WhatsApp. Withdrawal of ₹45,000 processed in 3 minutes via UPI!",
+      rating: 5,
+      time: "10 mins ago",
+    },
+    {
+      name: "Rahul M.",
+      city: "Mumbai",
+      text: "Got ₹25 instant joining bonus and won extra bonus on scratch card! Unmatched rates and smooth app.",
+      rating: 5,
+      time: "1 hour ago",
+    },
+    {
+      name: "Anish K.",
+      city: "Bangalore",
+      text: "Spun the wheel on my first deposit and unlocked cash reward! Best official app experience.",
+      rating: 5,
+      time: "3 hours ago",
+    },
+    {
+      name: "Priya R.",
+      city: "Jaipur",
+      text: "Referred 3 friends and received referral bonus immediately. Daily payout with zero issues!",
+      rating: 5,
+      time: "Yesterday",
+    },
+  ];
+
+  const faqs = [
+    {
+      q: "How do I download and install the KS Online APK?",
+      a: 'Click on any "DOWNLOAD APK" button on this website to receive the latest Android APK file directly via WhatsApp or direct download link within seconds.',
+    },
+    {
+      q: "How do I claim my ₹25 Welcome Joining Bonus?",
+      a: "As soon as you install the APK and register your mobile number, your account will instantly be credited with ₹25 Welcome Bonus.",
+    },
+    {
+      q: "How do Spin Wheel and Scratch Card rewards work?",
+      a: "Every player gets daily scratch cards to win instant playing bonus points. Active players also earn wheel spins to win gadgets, coins, and extra bonus points.",
+    },
+    {
+      q: "What is the Refer & Earn program?",
+      a: "Share your personal referral link inside the app with friends. When they join and play, you earn an instant bonus directly credited into your account.",
+    },
+    {
+      q: "What are the minimum deposit and instant withdrawal limits?",
+      a: "Minimum deposit starts at ₹100, and minimum withdrawal is ₹500 with zero charges and instant 24/7 processing via GPay, PhonePe, or Bank Transfer.",
+    },
+  ];
+
+  const handleDownloadApk = (
+    customMsg = "Hi KS Online, please send me the official APK Download link for KS ONLINE V2.0.",
+  ) => {
+    const encodedMsg = encodeURIComponent(customMsg);
+    window.open(`https://wa.me/919999999999?text=${encodedMsg}`, "_blank");
+  };
+
+  const handleOpenTelegram = () => {
+    window.open(`https://t.me/ksonline_official`, "_blank");
+  };
+
+  const handleSpinDemo = () => {
+    if (isSpinning) return;
+    setIsSpinning(true);
+    setSpinReward(null);
+    const extraSpins = 5 + Math.floor(Math.random() * 5);
+    const newRotation =
+      wheelRotation + extraSpins * 360 + Math.floor(Math.random() * 360);
+    setWheelRotation(newRotation);
+
+    setTimeout(() => {
+      setIsSpinning(false);
+      const rewards = [
+        "₹100 Bonus",
+        "Smart Watch",
+        "₹500 Bonus",
+        "Silver Coin",
+        "₹50 Bonus",
+        "Jackpot Pass",
+      ];
+      const chosen = rewards[Math.floor(Math.random() * rewards.length)];
+      setSpinReward(chosen);
+    }, 3000);
+  };
+
+  return (
+    <div className="min-h-screen bg-[#070B19] text-slate-100 font-sans selection:bg-[#D4AF37] selection:text-black overflow-x-hidden">
+      {/* Background Lighting Glow Effects */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-b from-amber-500/15 via-blue-600/10 to-transparent blur-[120px] rounded-full"></div>
+        <div className="absolute top-[40%] -left-32 w-96 h-96 bg-blue-600/10 blur-[100px] rounded-full"></div>
+        <div className="absolute top-[70%] -right-32 w-96 h-96 bg-amber-500/10 blur-[100px] rounded-full"></div>
+      </div>
+
+      {/* TOP LIVE UPDATE TICKER BAR */}
+      <div className="relative z-20 bg-gradient-to-r from-[#0b132b] via-[#09153a] to-[#0b132b] border-b border-amber-500/20 py-2 px-4 shadow-md">
+        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs font-semibold overflow-hidden">
+          <div className="flex items-center gap-3 w-full justify-center md:justify-start">
+            <span className="bg-red-600 text-white font-extrabold uppercase px-2.5 py-1 rounded-md text-[10px] tracking-wider flex items-center gap-1 shrink-0 shadow-sm animate-pulse">
+              ⚡ LIVE UPDATE
+            </span>
+            <div className="whitespace-nowrap overflow-hidden text-ellipsis text-slate-200">
+              🔥{" "}
+              <span className="text-amber-400 font-bold">KS ONLINE V2.0</span> —
+              Get{" "}
+              <span className="text-emerald-400 font-bold">
+                ₹25 WELCOME BONUS
+              </span>{" "}
+              On First Signup! &nbsp; ⚡ Download APK Now & Spin Wheel To Win
+              Exciting Prizes!
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* MAIN TOP NAVBAR HEADER SECTION */}
+      <header className="relative z-20 bg-[#070b19]/90 backdrop-blur-md border-b border-slate-800 px-4 py-3 sm:py-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          {/* Left Side: Circular Logo with Trident & Brand Name */}
+          <div className="flex items-center gap-3 cursor-pointer">
+            <div className="w-11 h-11 rounded-full bg-gradient-to-br from-amber-300 via-amber-500 to-amber-700 p-[2px] shadow-[0_0_15px_rgba(212,175,55,0.4)] flex items-center justify-center">
+              <div className="w-full h-full bg-[#070B19] rounded-full flex items-center justify-center border border-amber-300/40">
+                <span className="text-xl font-black text-amber-400">🔱</span>
+              </div>
+            </div>
+            <div>
+              <h1 className="text-xl sm:text-2xl font-black tracking-wider text-amber-400 leading-none">
+                KS ONLINE
+              </h1>
+              <p className="text-[10px] sm:text-xs font-bold tracking-widest text-cyan-400 uppercase mt-0.5">
+                ROYAL TRUST PORTAL
+              </p>
+            </div>
+          </div>
+
+          {/* Right Side: DOWNLOAD APK V2.0 Button */}
+          <div className="flex items-center">
+            <button
+              onClick={() => handleDownloadApk()}
+              className="px-4 sm:px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-300 hover:to-yellow-400 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider shadow-[0_0_20px_rgba(212,175,55,0.5)] hover:shadow-[0_0_25px_rgba(212,175,55,0.7)] hover:scale-[1.03] transition duration-300 flex items-center gap-2 border border-amber-200/50"
+            >
+              <Download className="w-4 h-4 stroke-[3]" />
+              DOWNLOAD APK V2.0
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* NEW GAMIFIED HERO SECTION */}
+      <section className="relative pt-8 pb-14 lg:pt-12 lg:pb-20 overflow-hidden z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* JOINING BONUS & REFERRAL CALLOUT BANNER */}
+          <div className="mb-8 p-3 sm:p-4 rounded-2xl bg-gradient-to-r from-amber-500/20 via-yellow-500/10 to-amber-500/20 border border-amber-400/40 backdrop-blur-md flex flex-wrap items-center justify-between gap-4 shadow-[0_0_30px_rgba(212,175,55,0.15)]">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center font-black text-xl shadow-lg shrink-0">
+                ₹25
+              </div>
+              <div>
+                <span className="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[10px] font-black uppercase px-2 py-0.5 rounded tracking-wider">
+                  NEW PLAYER OFFER
+                </span>
+                <h4 className="text-sm sm:text-base font-extrabold text-white">
+                  Get{" "}
+                  <span className="text-amber-300">₹25 Free Joining Bonus</span>{" "}
+                  Directly On Sign Up!
+                </h4>
+              </div>
+            </div>
+
+            {/* Refer & Earn Pill */}
+            <div className="flex items-center gap-2 bg-slate-900/80 px-3.5 py-1.5 rounded-xl border border-amber-400/30">
+              <Share2 className="w-4 h-4 text-cyan-400" />
+              <span className="text-xs font-bold text-slate-200">
+                Refer a Friend & Earn Extra Bonus!
+              </span>
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Left Column: Headline & Action */}
+            <div className="lg:col-span-6 text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-amber-500/10 border-l-4 border-amber-400 text-amber-300 text-xs font-bold mb-5 shadow-xl border-y border-r border-amber-500/20">
+                <ShieldCheck className="w-4 h-4 text-amber-400" />
+                <span className="uppercase tracking-wider">
+                  OFFICIAL VERIFIED ANDROID APP
+                </span>
+              </div>
+
+              <h1 className="text-3xl sm:text-5xl lg:text-5xl font-black text-white leading-tight tracking-tight mb-5">
+                PLAY, SPIN & WIN <br />
+                <span className="bg-gradient-to-r from-amber-200 via-amber-400 to-yellow-500 bg-clip-text text-transparent">
+                  DAILY EXCITING REWARDS
+                </span>
+              </h1>
+
+              <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed mb-6">
+                Welcome to KS Online! Experience instant cash payouts, highest
+                market rates, and our exclusive{" "}
+                <strong className="text-amber-300">Spin The Wheel</strong> and{" "}
+                <strong className="text-amber-300">Scratch & Win</strong>{" "}
+                features!
+              </p>
+
+              {/* Main Action CTAs */}
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-8">
+                <button
+                  onClick={() => handleDownloadApk()}
+                  className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 text-slate-950 font-black text-base uppercase tracking-wider shadow-[0_0_30px_rgba(212,175,55,0.4)] hover:shadow-[0_0_40px_rgba(212,175,55,0.7)] hover:scale-[1.03] active:scale-[0.98] transition duration-300 flex items-center justify-center gap-3 border border-amber-200/60"
+                >
+                  <Download className="w-6 h-6 stroke-[2.5]" />
+                  DOWNLOAD APK V2.0
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+
+                <button
+                  onClick={() => handleOpenTelegram()}
+                  className="w-full sm:w-auto px-6 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm tracking-wide shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:scale-[1.02] transition duration-300 flex items-center justify-center gap-2 border border-blue-400/40"
+                >
+                  JOIN TELEGRAM
+                </button>
+              </div>
+
+              {/* Quick Stats Pills */}
+              <div className="grid grid-cols-3 gap-3 max-w-lg mx-auto lg:mx-0 pt-4 border-t border-slate-800">
+                <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 text-center">
+                  <span className="block text-lg sm:text-2xl font-black text-amber-400">
+                    10K+
+                  </span>
+                  <span className="text-[10px] sm:text-[11px] text-slate-400 uppercase font-semibold">
+                    Active Players
+                  </span>
+                </div>
+                <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 text-center">
+                  <span className="block text-lg sm:text-2xl font-black text-amber-400">
+                    2 Mins
+                  </span>
+                  <span className="text-[10px] sm:text-[11px] text-slate-400 uppercase font-semibold">
+                    Fast Payout
+                  </span>
+                </div>
+                <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 text-center">
+                  <span className="block text-lg sm:text-2xl font-black text-amber-400">
+                    24 / 7
+                  </span>
+                  <span className="text-[10px] sm:text-[11px] text-slate-400 uppercase font-semibold">
+                    Live Support
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Gamified Feature Cards Showcase */}
+            <div className="lg:col-span-6 grid sm:grid-cols-2 gap-4">
+              {/* FEATURE 1: SPIN THE WHEEL */}
+              <div className="rounded-2xl bg-gradient-to-b from-[#0e1838] to-[#091024] p-5 border border-amber-500/40 shadow-xl flex flex-col justify-between relative overflow-hidden group">
+                <div className="absolute top-0 right-0 bg-amber-400 text-slate-950 font-black text-[9px] uppercase px-3 py-1 rounded-bl-xl tracking-wider">
+                  LUCKY SPIN
+                </div>
+
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="p-2 rounded-lg bg-amber-500/10 border border-amber-400/30 text-amber-400">
+                      <RotateCw className="w-5 h-5" />
+                    </div>
+                    <h3 className="text-base font-extrabold text-white">
+                      Spin The Wheel
+                    </h3>
+                  </div>
+
+                  <p className="text-xs text-slate-300 mb-4 leading-relaxed">
+                    Spin to win premium gadgets, cash rewards, and huge playing
+                    bonuses!
+                  </p>
+
+                  {/* Interactive Wheel Graphic / Demo */}
+                  <div className="relative w-36 h-36 mx-auto my-2 flex items-center justify-center">
+                    <div
+                      className="w-full h-full rounded-full border-4 border-amber-400/80 shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-transform duration-3000 ease-out flex items-center justify-center bg-gradient-to-tr from-amber-600 via-slate-900 to-amber-400"
+                      style={{ transform: `rotate(${wheelRotation}deg)` }}
+                    >
+                      {/* Wheel Inner Spokes Lines */}
+                      <div className="absolute w-full h-[2px] bg-amber-300/40"></div>
+                      <div className="absolute w-full h-[2px] bg-amber-300/40 rotate-45"></div>
+                      <div className="absolute w-full h-[2px] bg-amber-300/40 rotate-90"></div>
+                      <div className="absolute w-full h-[2px] bg-amber-300/40 rotate-[135deg]"></div>
+                      <div className="w-10 h-10 rounded-full bg-slate-950 border-2 border-amber-400 z-10 flex items-center justify-center">
+                        <Gift className="w-5 h-5 text-amber-400" />
+                      </div>
+                    </div>
+                    {/* Wheel Pointer */}
+                    <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-t-[14px] border-t-red-500 z-20"></div>
+                  </div>
+
+                  {spinReward && (
+                    <div className="mt-2 text-center p-2 rounded-lg bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 font-bold text-xs animate-bounce">
+                      🎉 Won: {spinReward}!
+                    </div>
+                  )}
+                </div>
+
+                <button
+                  onClick={handleSpinDemo}
+                  disabled={isSpinning}
+                  className="mt-4 w-full py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-1.5"
+                >
+                  <RotateCw
+                    className={`w-3.5 h-3.5 ${isSpinning ? "animate-spin" : ""}`}
+                  />
+                  {isSpinning ? "Spinning..." : "Try Demo Spin"}
+                </button>
+              </div>
+
+              {/* FEATURE 2: SCRATCH & WIN CARD */}
+              <div className="rounded-2xl bg-gradient-to-b from-[#0e1838] to-[#091024] p-5 border border-amber-500/40 shadow-xl flex flex-col justify-between relative overflow-hidden group">
+                <div className="absolute top-0 right-0 bg-emerald-400 text-slate-950 font-black text-[9px] uppercase px-3 py-1 rounded-bl-xl tracking-wider">
+                  BONUS POINTS
+                </div>
+
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-400/30 text-emerald-400">
+                      <Award className="w-5 h-5" />
+                    </div>
+                    <h3 className="text-base font-extrabold text-white">
+                      Scratch & Win
+                    </h3>
+                  </div>
+
+                  <p className="text-xs text-slate-300 mb-4 leading-relaxed">
+                    Scratch daily digital cards to instantly collect extra
+                    playing points!
+                  </p>
+
+                  {/* Interactive Scratch Card Display */}
+                  <div className="my-5 p-4 rounded-xl bg-[#050814] border border-slate-800/90 shadow-inner">
+                    <p className="text-[11px] text-emerald-400 font-extrabold uppercase tracking-wider mb-2">
+                      SCRATCH CARD DEMO
+                    </p>
+                    <div
+                      onClick={() => setIsScratched(true)}
+                      className="cursor-pointer h-16 rounded-xl bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border border-slate-700/80 flex items-center justify-center text-center p-3 transition hover:border-emerald-400/60 shadow-md group"
+                    >
+                      {isScratched ? (
+                        <div className="text-emerald-400 font-black text-xs sm:text-sm flex items-center gap-1.5 animate-bounce">
+                          <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
+                          <span>REVEALED: +500 PTS!</span>
+                        </div>
+                      ) : (
+                        <span className="text-xs text-slate-300 font-bold group-hover:text-emerald-300 flex items-center gap-1">
+                          👉 Tap here to Scratch
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => handleDownloadApk()}
+                  className="mt-4 w-full py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-black text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-1.5"
+                >
+                  <Download className="w-3.5 h-3.5 stroke-[3]" />
+                  Get Unlimited Cards On App
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* GAME RATES SECTION */}
+      <section className="py-16 relative bg-[#070B19]/90 border-t border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-10">
+            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+              Game Rates
+            </h2>
+            <div className="w-16 h-1 bg-amber-400 mx-auto mt-2 rounded-full"></div>
+            <p className="text-slate-400 text-xs sm:text-sm mt-3 font-medium">
+              Highest payout game rates in the market.
+            </p>
+          </div>
+
+          {/* Category Selectors */}
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+            {[
+              { id: "all", label: "All Game Rates", icon: Sparkles },
+              { id: "jackpot", label: "Jackpot", icon: Flame },
+              { id: "starline", label: "Starline", icon: StarIcon },
+            ].map((tab) => {
+              const TabIcon = tab.icon;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveRateCategory(tab.id)}
+                  className={`px-6 py-3 rounded-xl text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-all duration-300 flex items-center gap-2 border ${
+                    activeRateCategory === tab.id
+                      ? "bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 text-slate-950 border-amber-300 shadow-[0_0_20px_rgba(212,175,55,0.4)] scale-105"
+                      : "bg-slate-900/90 text-slate-300 border-slate-800 hover:border-amber-500/40 hover:text-amber-300"
+                  }`}
+                >
+                  <TabIcon className="w-4 h-4" />
+                  {tab.label}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* ALL GAME RATES VIEW */}
+          {activeRateCategory === "all" && (
+            <div className="grid md:grid-cols-2 gap-4 max-w-5xl mx-auto">
+              {gameRatesData.all.map((item) => {
+                const IconComponent = item.icon;
+                return (
+                  <div
+                    key={item.id}
+                    className="group relative rounded-2xl bg-gradient-to-r from-[#0a1228] to-[#0e1a38] p-4 sm:p-5 border border-slate-800 hover:border-amber-400/50 transition-all duration-300 shadow-lg flex items-center justify-between"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-slate-900/90 border border-slate-700/80 flex items-center justify-center text-amber-400 group-hover:scale-110 transition duration-300 shadow-inner">
+                        <IconComponent className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-amber-300 transition-colors">
+                          {item.name}
+                        </h3>
+                        <p className="text-[11px] text-slate-400">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="px-4 py-2.5 rounded-xl bg-[#060a17] border border-slate-800 font-bold text-xs sm:text-sm tracking-wide flex items-center gap-2 text-slate-300 group-hover:border-amber-500/40 transition">
+                      <span className="text-slate-400 font-semibold">
+                        {item.base}
+                      </span>
+                      <span className="text-amber-400 font-black text-sm sm:text-base">
+                        {item.rate}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* JACKPOT VIEW */}
+          {activeRateCategory === "jackpot" && (
+            <div className="max-w-3xl mx-auto">
+              {gameRatesData.jackpot.map((item) => {
+                const IconComponent = item.icon;
+                return (
+                  <div
+                    key={item.id}
+                    className="relative rounded-2xl bg-gradient-to-r from-[#0a1228] via-[#101e40] to-[#0a1228] p-6 border-2 border-amber-500/50 shadow-[0_0_30px_rgba(212,175,55,0.15)] flex flex-col sm:flex-row items-center justify-between gap-6"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-400/40 flex items-center justify-center text-amber-400">
+                        <IconComponent className="w-8 h-8 animate-spin-slow" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <h3 className="text-2xl font-black text-white tracking-wider">
+                            {item.name}
+                          </h3>
+                          <span className="text-[10px] font-bold bg-amber-400 text-slate-950 px-2 py-0.5 rounded uppercase">
+                            HOT
+                          </span>
+                        </div>
+                        <p className="text-xs font-bold text-cyan-400 tracking-widest uppercase mt-0.5">
+                          {item.market}
+                        </p>
+                        <p className="text-xs text-slate-400 mt-1">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="px-6 py-3.5 rounded-2xl bg-[#060a17] border border-amber-400/30 text-slate-200 font-bold text-base flex items-center gap-3 shadow-inner">
+                      <span className="text-slate-400">{item.base}</span>
+                      <span className="text-amber-400 font-black text-xl">
+                        {item.rate}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* STARLINE VIEW */}
+          {activeRateCategory === "starline" && (
+            <div className="max-w-5xl mx-auto rounded-3xl bg-gradient-to-b from-[#0a1228] to-[#080d1d] p-6 sm:p-8 border border-amber-500/30 shadow-2xl">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-black text-white uppercase tracking-wider">
+                  STARLINE
+                </h3>
+                <p className="text-xs font-bold text-amber-400 tracking-widest uppercase mt-1">
+                  SPECIAL MARKET RATES
+                </p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {gameRatesData.starline.map((item) => {
+                  return (
+                    <div
+                      key={item.id}
+                      className="p-4 rounded-xl bg-[#060a17] border border-slate-800 hover:border-amber-400/50 transition-all flex flex-col justify-between"
+                    >
+                      <div className="mb-3">
+                        <h4 className="text-xs font-black text-slate-200 uppercase tracking-wider">
+                          {item.name}
+                        </h4>
+                        <p className="text-[10px] text-slate-400 mt-0.5">
+                          {item.desc}
+                        </p>
+                      </div>
+
+                      <div className="px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs font-bold flex items-center justify-between text-slate-300">
+                        <span className="text-slate-400">{item.base}</span>
+                        <span className="text-amber-400 font-extrabold text-sm">
+                          {item.rate}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Download APK CTA underneath Rates */}
+          <div className="mt-12 text-center">
+            <button
+              onClick={() => handleDownloadApk()}
+              className="px-8 py-4 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider shadow-[0_0_25px_rgba(212,175,55,0.4)] hover:scale-105 transition duration-300 inline-flex items-center gap-2"
+            >
+              <Download className="w-5 h-5 stroke-[3]" />
+              DOWNLOAD APK & START PLAYING
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* WHY CHOOSE US / FEATURES SECTION */}
+      <section className="py-16 bg-slate-950/70 border-y border-slate-800/80 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-xs font-bold text-amber-400 tracking-widest uppercase mb-2">
+              ULTIMATE TRUST & SPEED
+            </h2>
+            <p className="text-3xl sm:text-4xl font-black text-white">
+              WHY PLAY ON KS ONLINE?
+            </p>
+            <div className="w-16 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto mt-4 rounded-full"></div>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="p-6 rounded-2xl bg-gradient-to-b from-slate-900 to-[#0B132B]/80 border border-slate-800 hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="w-14 h-14 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-6 group-hover:scale-110 transition duration-300">
+                <Zap className="w-7 h-7" />
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">
+                Instant Payouts
+              </h3>
+              <p className="text-sm text-slate-400 leading-relaxed">
+                Receive your winning cash directly in your bank account or UPI
+                apps within 2 to 5 minutes without delay.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-gradient-to-b from-slate-900 to-[#0B132B]/80 border border-slate-800 hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="w-14 h-14 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-6 group-hover:scale-110 transition duration-300">
+                <ShieldCheck className="w-7 h-7" />
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">
+                100% Security & Safety
+              </h3>
+              <p className="text-sm text-slate-400 leading-relaxed">
+                State-of-the-art encryption ensures complete anonymity and safe
+                transaction record protection.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-gradient-to-b from-slate-900 to-[#0B132B]/80 border border-slate-800 hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="w-14 h-14 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 transition duration-300">
+                <Headphones className="w-7 h-7" />
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">
+                24x7 Support
+              </h3>
+              <p className="text-sm text-slate-400 leading-relaxed">
+                Dedicated WhatsApp and Telegram managers ready round-the-clock
+                to solve your queries in seconds.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-gradient-to-b from-slate-900 to-[#0B132B]/80 border border-slate-800 hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="w-14 h-14 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-6 group-hover:scale-110 transition duration-300">
+                <Trophy className="w-7 h-7" />
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">
+                Best Industry Rates
+              </h3>
+              <p className="text-sm text-slate-400 leading-relaxed">
+                Enjoy maximum market rate ratios and guaranteed highest payout
+                multiples across all markets.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* STEP BY STEP HOW IT WORKS */}
+      <section className="py-20 bg-slate-950/80 border-y border-slate-800 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-xs font-bold text-amber-400 tracking-widest uppercase mb-2">
+              SIMPLE 4-STEP PROCESS
+            </h2>
+            <p className="text-3xl sm:text-4xl font-black text-white">
+              HOW TO START PLAYING ON KS ONLINE
+            </p>
+            <div className="w-16 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto mt-4 rounded-full"></div>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6">
+            <div className="relative p-6 rounded-2xl bg-slate-900 border border-slate-800 text-center flex flex-col items-center">
+              <div className="w-12 h-12 rounded-full bg-amber-400 text-slate-950 font-black text-xl flex items-center justify-center mb-4 shadow-[0_0_15px_rgba(212,175,55,0.4)]">
+                1
+              </div>
+              <h3 className="text-base font-bold text-white mb-2">
+                Download App
+              </h3>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Click Download APK to install the official KS ONLINE
+                application.
+              </p>
+            </div>
+
+            <div className="relative p-6 rounded-2xl bg-slate-900 border border-slate-800 text-center flex flex-col items-center">
+              <div className="w-12 h-12 rounded-full bg-amber-400 text-slate-950 font-black text-xl flex items-center justify-center mb-4 shadow-[0_0_15px_rgba(212,175,55,0.4)]">
+                2
+              </div>
+              <h3 className="text-base font-bold text-white mb-2">
+                Sign Up & Get ₹25
+              </h3>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Register inside the app to automatically receive ₹25 free
+                welcome bonus.
+              </p>
+            </div>
+
+            <div className="relative p-6 rounded-2xl bg-slate-900 border border-slate-800 text-center flex flex-col items-center">
+              <div className="w-12 h-12 rounded-full bg-amber-400 text-slate-950 font-black text-xl flex items-center justify-center mb-4 shadow-[0_0_15px_rgba(212,175,55,0.4)]">
+                3
+              </div>
+              <h3 className="text-base font-bold text-white mb-2">
+                Spin & Play
+              </h3>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Use daily scratch cards, spin the lucky wheel, and place bets on
+                games.
+              </p>
+            </div>
+
+            <div className="relative p-6 rounded-2xl bg-slate-900 border border-slate-800 text-center flex flex-col items-center">
+              <div className="w-12 h-12 rounded-full bg-amber-400 text-slate-950 font-black text-xl flex items-center justify-center mb-4 shadow-[0_0_15px_rgba(212,175,55,0.4)]">
+                4
+              </div>
+              <h3 className="text-base font-bold text-white mb-2">
+                Instant Payouts
+              </h3>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Request instant withdrawals to receiving money directly into
+                your UPI/Bank.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* REDESIGNED SECURE PAYMENT OPTIONS SECTION */}
+      <section className="py-16 bg-gradient-to-b from-[#070B19] via-[#0b132b] to-[#070B19] border-y border-slate-800/80 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-400/30 text-emerald-400 text-xs font-bold mb-3">
+              <Lock className="w-3.5 h-3.5" />
+              100% ENCRYPTED & INSTANT DEPOSITS
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+              FAST & SECURE PAYMENT METHODS
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-400 mt-2">
+              Instant 2-minute auto deposit and withdrawal using all major
+              Indian payment gateways.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            {/* PhonePe Card */}
+            <div className="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-purple-500/50 hover:shadow-[0_0_20px_rgba(168,85,247,0.2)] transition duration-300 flex flex-col items-center text-center group">
+              <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-3 group-hover:scale-110 transition">
+                <Smartphone className="w-6 h-6" />
+              </div>
+              <h4 className="text-sm font-bold text-white">PhonePe</h4>
+              <span className="text-[10px] text-emerald-400 font-semibold mt-1 flex items-center gap-1">
+                <Check className="w-3 h-3" /> Auto Instant
+              </span>
+            </div>
+
+            {/* Google Pay Card */}
+            <div className="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)] transition duration-300 flex flex-col items-center text-center group">
+              <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-3 group-hover:scale-110 transition">
+                <Wallet className="w-6 h-6" />
+              </div>
+              <h4 className="text-sm font-bold text-white">Google Pay</h4>
+              <span className="text-[10px] text-emerald-400 font-semibold mt-1 flex items-center gap-1">
+                <Check className="w-3 h-3" /> Auto Instant
+              </span>
+            </div>
+
+            {/* Paytm UPI Card */}
+            <div className="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 hover:shadow-[0_0_20px_rgba(6,182,212,0.2)] transition duration-300 flex flex-col items-center text-center group">
+              <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-3 group-hover:scale-110 transition">
+                <Zap className="w-6 h-6" />
+              </div>
+              <h4 className="text-sm font-bold text-white">Paytm UPI</h4>
+              <span className="text-[10px] text-emerald-400 font-semibold mt-1 flex items-center gap-1">
+                <Check className="w-3 h-3" /> Auto Instant
+              </span>
+            </div>
+
+            {/* BHIM UPI Card */}
+            <div className="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-orange-500/50 hover:shadow-[0_0_20px_rgba(249,115,22,0.2)] transition duration-300 flex flex-col items-center text-center group">
+              <div className="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-400 mb-3 group-hover:scale-110 transition">
+                <ShieldCheck className="w-6 h-6" />
+              </div>
+              <h4 className="text-sm font-bold text-white">BHIM UPI</h4>
+              <span className="text-[10px] text-emerald-400 font-semibold mt-1 flex items-center gap-1">
+                <Check className="w-3 h-3" /> Auto Instant
+              </span>
+            </div>
+
+            {/* Bank Transfer Card */}
+            <div className="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] transition duration-300 flex flex-col items-center text-center group col-span-2 sm:col-span-1">
+              <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-3 group-hover:scale-110 transition">
+                <Trophy className="w-6 h-6" />
+              </div>
+              <h4 className="text-sm font-bold text-white">
+                IMPS / Bank Transfer
+              </h4>
+              <span className="text-[10px] text-emerald-400 font-semibold mt-1 flex items-center gap-1">
+                <Check className="w-3 h-3" /> 24x7 Direct Payout
+              </span>
+            </div>
+          </div>
+
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-400">
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-emerald-400" /> Zero
+              Processing Fee
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Zap className="w-4 h-4 text-amber-400" /> Instant Auto Credit
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Lock className="w-4 h-4 text-blue-400" /> 256-bit Bank Grade
+              Security
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section className="py-20 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-xs font-bold text-amber-400 tracking-widest uppercase mb-2">
+              VERIFIED USER REVIEWS
+            </h2>
+            <p className="text-3xl sm:text-4xl font-black text-white">
+              WHAT OUR PLAYERS SAY
+            </p>
+            <div className="w-16 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto mt-4 rounded-full"></div>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {testimonials.map((t, idx) => (
+              <div
+                key={idx}
+                className="p-6 rounded-2xl bg-gradient-to-b from-slate-900 to-[#0B132B] border border-slate-800 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center gap-1 text-amber-400 mb-4">
+                    {[...Array(t.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-amber-400" />
+                    ))}
+                  </div>
+                  <p className="text-xs text-slate-300 leading-relaxed mb-6 italic">
+                    "{t.text}"
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                  <div>
+                    <h4 className="text-sm font-bold text-white flex items-center gap-1.5">
+                      {t.name}
+                      <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
+                    </h4>
+                    <span className="text-[10px] text-slate-400">{t.city}</span>
+                  </div>
+                  <span className="text-[10px] text-slate-500 font-medium">
+                    {t.time}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ SECTION */}
+      <section className="py-16 bg-slate-950/90 border-t border-slate-800 relative">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-xs font-bold text-amber-400 tracking-widest uppercase mb-2">
+              GOT QUESTIONS?
+            </h2>
+            <p className="text-3xl font-black text-white">
+              FREQUENTLY ASKED QUESTIONS
+            </p>
+            <div className="w-16 h-1 bg-amber-400 mx-auto mt-3 rounded-full"></div>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, i) => (
+              <div
+                key={i}
+                className="rounded-2xl bg-slate-900/80 border border-slate-800 overflow-hidden transition"
+              >
+                <button
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full p-5 text-left flex items-center justify-between gap-4 focus:outline-none"
+                >
+                  <span className="text-sm sm:text-base font-bold text-slate-100">
+                    {faq.q}
+                  </span>
+                  {openFaq === i ? (
+                    <ChevronUp className="w-5 h-5 text-amber-400 shrink-0" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />
+                  )}
+                </button>
+
+                {openFaq === i && (
+                  <div className="px-5 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
+                    {faq.a}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="bg-[#050813] border-t border-slate-800 py-10 px-4 text-center">
+        <div className="max-w-7xl mx-auto flex flex-col items-center gap-6">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-amber-400 flex items-center justify-center text-slate-950 font-black text-lg">
+              🔱
+            </div>
+            <span className="text-xl font-black text-amber-400 tracking-wider">
+              KS ONLINE
+            </span>
+          </div>
+
+          <p className="text-xs text-slate-400 max-w-xl leading-relaxed">
+            KS ONLINE is India's leading trusted platform providing live market
+            games, instant withdrawal capabilities, daily spin wheel bonuses,
+            and scratch card rewards.
+          </p>
+
+          <div className="flex items-center justify-center gap-4">
+            <button
+              onClick={() => handleDownloadApk()}
+              className="px-5 py-2 rounded-xl bg-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider hover:bg-amber-300 transition flex items-center gap-2"
+            >
+              <Download className="w-4 h-4 stroke-[3]" />
+              DOWNLOAD APK V2.0
+            </button>
+          </div>
+
+          <div className="text-[11px] text-slate-500 pt-4 border-t border-slate-800/60 w-full max-w-xl">
+            © {new Date().getFullYear()} KS ONLINE V2.0 Official Portal. All
+            rights reserved. Play Responsibly.
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
