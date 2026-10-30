@@ -1,0 +1,89 @@
+:root {
+  --color-primary-gold: #d4af37;
+  --color-rich-gold: #f3e5ab;
+  --color-deep-gold: #b8860b;
+  --color-metallic-silver: #c5ced8;
+  --color-pure-platinum: #e2e8f0;
+  --color-royal-blue: #1e3a8a;
+  --color-cobalt-blue: #2563eb;
+  --color-electric-cyan: #38bdf8;
+  --color-electric-blue: #00a6c7;
+  --color-purple: #9254de;
+  --color-tilak-red: #e63946;
+  --color-dark-background: #070b12;
+  --color-card-surface: #0f172a;
+  --color-elevated-surface: #1e293b;
+  --color-dark-navy: #0b111e;
+  --color-background: #f8f4ea;
+  --color-surface: #fffdf9;
+  --color-surface-alt: #f5efe2;
+  --color-card: #ffffff;
+  --color-text-primary: #101827;
+  --color-text-secondary: #475467;
+  --color-text-muted: #667085;
+  --color-border: rgba(212, 175, 55, 0.26);
+  --color-border-strong: rgba(212, 175, 55, 0.58);
+  --color-success: #10b981;
+  --color-white: #ffffff;
+  --color-btn-dark: #101827;
+  --color-login-bg: #fcfcfa;
+  --color-login-warm-white: #fff9e9;
+  --color-login-pale-gold: #fff4cc;
+  --color-login-coin-circle: #ffe69a;
+  --color-login-button-light: #ffe58a;
+  --color-login-input-fill: #fcfcfd;
+  --color-login-border: #e1e5ec;
+  --color-login-divider: #d7dce4;
+  --color-login-track: #e9ecf1;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Inter, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(212, 175, 55, 0.14), transparent 28%),
+    radial-gradient(
+      circle at bottom right,
+      rgba(37, 99, 235, 0.08),
+      transparent 24%
+    ),
+    var(--color-background);
+  color: var(--color-text-primary);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: var(--color-primary-gold);
+  color: var(--color-btn-dark);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

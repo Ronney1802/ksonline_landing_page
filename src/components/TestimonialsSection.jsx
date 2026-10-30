@@ -15,24 +15,47 @@ export function TestimonialsSection() {
           {testimonials.map((t, idx) => (
             <Card key={idx} className="flex flex-col justify-between">
               <div>
-                <div className="flex items-center gap-1 text-amber-400 mb-4">
+                <div
+                  className="flex items-center gap-1 mb-4"
+                  style={{ color: "var(--color-primary-gold)" }}
+                >
                   {[...Array(t.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amber-400" />
+                    <Star key={i} className="w-4 h-4 fill-current" />
                   ))}
                 </div>
-                <p className="text-xs text-slate-300 leading-relaxed mb-6 italic">
+                <p
+                  className="text-xs leading-relaxed mb-6 italic"
+                  style={{ color: "var(--color-text-secondary)" }}
+                >
                   "{t.text}"
                 </p>
               </div>
-              <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+              <div
+                className="pt-4 flex items-center justify-between border-t"
+                style={{ borderColor: "rgba(212,175,55,0.18)" }}
+              >
                 <div>
-                  <h4 className="text-sm font-bold text-white flex items-center gap-1.5">
+                  <h4
+                    className="text-sm font-bold flex items-center gap-1.5"
+                    style={{ color: "var(--color-text-primary)" }}
+                  >
                     {t.name}{" "}
-                    <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
+                    <CheckCircle
+                      className="w-3.5 h-3.5"
+                      style={{ color: "var(--color-success)" }}
+                    />
                   </h4>
-                  <span className="text-[10px] text-slate-400">{t.city}</span>
+                  <span
+                    className="text-[10px]"
+                    style={{ color: "var(--color-text-muted)" }}
+                  >
+                    {t.city}
+                  </span>
                 </div>
-                <span className="text-[10px] text-slate-500 font-semibold">
+                <span
+                  className="text-[10px] font-semibold"
+                  style={{ color: "var(--color-text-muted)" }}
+                >
                   {t.time}
                 </span>
               </div>

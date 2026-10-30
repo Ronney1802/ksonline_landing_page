@@ -15,14 +15,19 @@ export function GameRatesSection({ onDownload }) {
   ];
 
   return (
-    <section className="py-16 relative bg-[#070B19]/90 border-t border-slate-800">
+    <section
+      className="py-16 relative border-t"
+      style={{
+        background: "rgba(255,255,255,0.35)",
+        borderColor: "rgba(212,175,55,0.2)",
+      }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           title="Game Rates"
           description="Live market game rates with highest returns."
         />
 
-        {/* Tab Selectors */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
           {tabs.map((tab) => {
             const Icon = tab.icon;
@@ -31,11 +36,23 @@ export function GameRatesSection({ onDownload }) {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-6 py-3 rounded-xl text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-all duration-300 flex items-center gap-2 border ${
+                className="px-6 py-3 rounded-xl text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-all duration-300 flex items-center gap-2 border"
+                style={
                   isActive
-                    ? "bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 text-slate-950 border-amber-300 shadow-[0_0_20px_rgba(212,175,55,0.4)] scale-105"
-                    : "bg-slate-900/90 text-slate-300 border-slate-800 hover:border-amber-500/40 hover:text-amber-300"
-                }`}
+                    ? {
+                        background:
+                          "linear-gradient(90deg, var(--color-primary-gold), var(--color-rich-gold))",
+                        color: "var(--color-btn-dark)",
+                        borderColor: "rgba(212,175,55,0.72)",
+                        boxShadow: "0 0 20px rgba(212,175,55,0.28)",
+                        transform: "scale(1.04)",
+                      }
+                    : {
+                        background: "var(--color-card)",
+                        color: "var(--color-text-secondary)",
+                        borderColor: "rgba(212,175,55,0.18)",
+                      }
+                }
               >
                 <Icon className="w-4 h-4" />
                 {tab.label}
@@ -44,7 +61,6 @@ export function GameRatesSection({ onDownload }) {
           })}
         </div>
 
-        {/* Tab Content Display */}
         {activeTab === "all" && (
           <div className="grid md:grid-cols-2 gap-4 max-w-5xl mx-auto">
             {gameRatesData.all.map((item) => {
@@ -55,19 +71,45 @@ export function GameRatesSection({ onDownload }) {
                   className="flex items-center justify-between"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700/80 flex items-center justify-center text-amber-400">
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center border"
+                      style={{
+                        background: "rgba(212,175,55,0.1)",
+                        borderColor: "rgba(212,175,55,0.35)",
+                        color: "var(--color-primary-gold)",
+                      }}
+                    >
                       <IconComponent className="w-6 h-6" />
                     </div>
                     <div>
-                      <h4 className="text-base font-bold text-white">
+                      <h4
+                        className="text-base font-bold"
+                        style={{ color: "var(--color-text-primary)" }}
+                      >
                         {item.name}
                       </h4>
-                      <p className="text-[11px] text-slate-400">{item.desc}</p>
+                      <p
+                        className="text-[11px]"
+                        style={{ color: "var(--color-text-muted)" }}
+                      >
+                        {item.desc}
+                      </p>
                     </div>
                   </div>
-                  <div className="px-4 py-2 rounded-xl bg-[#060a17] border border-slate-800 font-bold text-xs sm:text-sm flex items-center gap-2">
-                    <span className="text-slate-400">{item.base}</span>
-                    <span className="text-amber-400 font-black text-base">
+                  <div
+                    className="px-4 py-2 rounded-xl border font-bold text-xs sm:text-sm flex items-center gap-2"
+                    style={{
+                      background: "var(--color-surface)",
+                      borderColor: "rgba(212,175,55,0.2)",
+                    }}
+                  >
+                    <span style={{ color: "var(--color-text-muted)" }}>
+                      {item.base}
+                    </span>
+                    <span
+                      className="font-black text-base"
+                      style={{ color: "var(--color-primary-gold)" }}
+                    >
                       {item.rate}
                     </span>
                   </div>
@@ -89,21 +131,45 @@ export function GameRatesSection({ onDownload }) {
                   className="flex flex-col sm:flex-row items-center justify-between gap-6 p-6"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-400/40 flex items-center justify-center text-amber-400">
+                    <div
+                      className="w-16 h-16 rounded-2xl flex items-center justify-center border"
+                      style={{
+                        background: "rgba(212,175,55,0.1)",
+                        borderColor: "rgba(212,175,55,0.46)",
+                        color: "var(--color-primary-gold)",
+                      }}
+                    >
                       <IconComponent className="w-8 h-8" />
                     </div>
                     <div>
-                      <h4 className="text-2xl font-black text-white uppercase">
+                      <h4
+                        className="text-2xl font-black uppercase"
+                        style={{ color: "var(--color-text-primary)" }}
+                      >
                         {item.name}
                       </h4>
-                      <p className="text-xs font-bold text-cyan-400 tracking-widest uppercase">
+                      <p
+                        className="text-xs font-bold uppercase tracking-widest"
+                        style={{ color: "var(--color-cobalt-blue)" }}
+                      >
                         {item.market}
                       </p>
                     </div>
                   </div>
-                  <div className="px-6 py-3 rounded-2xl bg-[#060a17] border border-amber-400/30 text-slate-200 font-bold text-base flex items-center gap-3">
-                    <span className="text-slate-400">{item.base}</span>
-                    <span className="text-amber-400 font-black text-xl">
+                  <div
+                    className="px-6 py-3 rounded-2xl border font-bold text-base flex items-center gap-3"
+                    style={{
+                      background: "var(--color-surface)",
+                      borderColor: "rgba(212,175,55,0.26)",
+                    }}
+                  >
+                    <span style={{ color: "var(--color-text-muted)" }}>
+                      {item.base}
+                    </span>
+                    <span
+                      className="font-black text-xl"
+                      style={{ color: "var(--color-primary-gold)" }}
+                    >
                       {item.rate}
                     </span>
                   </div>
@@ -114,24 +180,52 @@ export function GameRatesSection({ onDownload }) {
         )}
 
         {activeTab === "starline" && (
-          <div className="max-w-5xl mx-auto rounded-3xl bg-gradient-to-b from-[#0a1228] to-[#080d1d] p-6 sm:p-8 border border-amber-500/30">
+          <div
+            className="max-w-5xl mx-auto rounded-3xl p-6 sm:p-8 border"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(255,255,255,0.9), rgba(245,239,226,0.96))",
+              borderColor: "rgba(212,175,55,0.32)",
+            }}
+          >
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {gameRatesData.starline.map((item) => (
                 <div
                   key={item.id}
-                  className="p-4 rounded-xl bg-[#060a17] border border-slate-800 flex flex-col justify-between"
+                  className="p-4 rounded-xl border flex flex-col justify-between"
+                  style={{
+                    background: "var(--color-surface)",
+                    borderColor: "rgba(212,175,55,0.18)",
+                  }}
                 >
                   <div>
-                    <h4 className="text-xs font-black text-slate-200 uppercase">
+                    <h4
+                      className="text-xs font-black uppercase"
+                      style={{ color: "var(--color-text-primary)" }}
+                    >
                       {item.name}
                     </h4>
-                    <p className="text-[10px] text-slate-400 mt-0.5">
+                    <p
+                      className="text-[10px] mt-0.5"
+                      style={{ color: "var(--color-text-muted)" }}
+                    >
                       {item.desc}
                     </p>
                   </div>
-                  <div className="mt-3 px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs font-bold flex items-center justify-between">
-                    <span className="text-slate-400">{item.base}</span>
-                    <span className="text-amber-400 font-extrabold">
+                  <div
+                    className="mt-3 px-3 py-2 rounded-lg border text-xs font-bold flex items-center justify-between"
+                    style={{
+                      background: "rgba(255,255,255,0.76)",
+                      borderColor: "rgba(212,175,55,0.16)",
+                    }}
+                  >
+                    <span style={{ color: "var(--color-text-muted)" }}>
+                      {item.base}
+                    </span>
+                    <span
+                      className="font-extrabold"
+                      style={{ color: "var(--color-primary-gold)" }}
+                    >
                       {item.rate}
                     </span>
                   </div>
@@ -141,11 +235,10 @@ export function GameRatesSection({ onDownload }) {
           </div>
         )}
 
-        {/* Download APK CTA underneath Rates */}
         <div className="mt-12 text-center">
           <Button
             onClick={onDownload}
-            className="px-8 py-4 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider shadow-[0_0_25px_rgba(212,175,55,0.4)] hover:scale-105 transition duration-300 inline-flex items-center gap-2"
+            className="px-8 py-4 rounded-xl font-black text-xs sm:text-sm uppercase tracking-wider inline-flex items-center gap-2"
           >
             <Download className="w-5 h-5 stroke-[3]" />
             PLAY AT BEST RATES — DOWNLOAD APP NOW

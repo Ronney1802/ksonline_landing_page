@@ -3,7 +3,13 @@ import { howItWorkSteps } from "../data/gameData";
 
 export function HowItWorksSection() {
   return (
-    <section className="py-20 bg-slate-950/80 border-y border-slate-800">
+    <section
+      className="py-20 border-y"
+      style={{
+        background: "rgba(255,255,255,0.25)",
+        borderColor: "rgba(212,175,55,0.2)",
+      }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           subtitle="SIMPLE 4-STEP PROCESS"
@@ -13,15 +19,33 @@ export function HowItWorksSection() {
           {howItWorkSteps.map((step, idx) => (
             <div
               key={idx}
-              className="p-6 rounded-2xl bg-slate-900 border border-slate-800 text-center flex flex-col items-center"
+              className="p-6 rounded-2xl border text-center flex flex-col items-center"
+              style={{
+                background: "var(--color-card)",
+                borderColor: "rgba(212,175,55,0.18)",
+              }}
             >
-              <div className="w-12 h-12 rounded-full bg-amber-400 text-slate-950 font-black text-xl flex items-center justify-center mb-4 shadow-[0_0_15px_rgba(212,175,55,0.4)]">
+              <div
+                className="w-12 h-12 rounded-full font-black text-xl flex items-center justify-center mb-4"
+                style={{
+                  background:
+                    "linear-gradient(135deg, var(--color-primary-gold), var(--color-rich-gold))",
+                  color: "var(--color-btn-dark)",
+                  boxShadow: "0 0 15px rgba(212,175,55,0.28)",
+                }}
+              >
                 {step.num}
               </div>
-              <h3 className="text-base font-bold text-white mb-2">
+              <h3
+                className="text-base font-bold mb-2"
+                style={{ color: "var(--color-text-primary)" }}
+              >
                 {step.title}
               </h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <p
+                className="text-xs leading-relaxed"
+                style={{ color: "var(--color-text-secondary)" }}
+              >
                 {step.desc}
               </p>
             </div>

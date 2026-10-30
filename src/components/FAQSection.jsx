@@ -11,7 +11,14 @@ export function FaqSection() {
   };
 
   return (
-    <section className="py-16 bg-slate-950/90 border-t border-slate-800">
+    <section
+      className="py-16 border-t"
+      style={{
+        background:
+          "linear-gradient(180deg, rgba(255,255,255,0.68), rgba(249,245,236,0.9))",
+        borderColor: "rgba(212,175,55,0.2)",
+      }}
+    >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           subtitle="FREQUENTLY ASKED QUESTIONS"
@@ -23,21 +30,47 @@ export function FaqSection() {
             return (
               <div
                 key={idx}
-                className="rounded-2xl bg-gradient-to-r from-[#0a1228] to-[#0e1a38] border border-slate-800 overflow-hidden transition-all duration-300"
+                className="rounded-2xl border overflow-hidden transition-all duration-300"
+                style={{
+                  background: "rgba(255,255,255,0.82)",
+                  borderColor: "rgba(212,175,55,0.18)",
+                  boxShadow: isOpen
+                    ? "0 12px 30px rgba(212, 175, 55, 0.08)"
+                    : "0 6px 18px rgba(15, 23, 42, 0.04)",
+                }}
               >
                 <button
                   onClick={() => toggleFaq(idx)}
-                  className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-white hover:text-amber-300"
+                  className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base transition-colors duration-200"
+                  style={{
+                    color: "var(--color-text-primary)",
+                    background: isOpen
+                      ? "rgba(243, 229, 171, 0.2)"
+                      : "transparent",
+                  }}
                 >
                   <span>{faq.q}</span>
                   {isOpen ? (
-                    <ChevronUp className="w-5 h-5 text-amber-400 shrink-0" />
+                    <ChevronUp
+                      className="w-5 h-5 shrink-0"
+                      style={{ color: "var(--color-primary-gold)" }}
+                    />
                   ) : (
-                    <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />
+                    <ChevronDown
+                      className="w-5 h-5 shrink-0"
+                      style={{ color: "var(--color-text-muted)" }}
+                    />
                   )}
                 </button>
                 {isOpen && (
-                  <div className="px-6 pb-4 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
+                  <div
+                    className="px-6 pb-4 text-xs sm:text-sm leading-relaxed border-t pt-3"
+                    style={{
+                      color: "var(--color-text-secondary)",
+                      borderColor: "rgba(212,175,55,0.12)",
+                      background: "rgba(255,255,255,0.55)",
+                    }}
+                  >
                     {faq.a}
                   </div>
                 )}

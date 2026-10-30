@@ -4,11 +4,19 @@ import logo from "../assets/ksonline.png";
 
 export function Navbar({ onDownload }) {
   return (
-    <header className="relative z-20 bg-[#070b19]/90 backdrop-blur-md border-b border-slate-800 px-4 py-3 sm:py-2">
+    <header
+      className="relative z-20 px-4 py-3 sm:py-2 backdrop-blur-md border-b"
+      style={{
+        background: "rgba(255, 253, 249, 0.85)",
+        borderColor: "rgba(212, 175, 55, 0.24)",
+      }}
+    >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex items-center gap-3 cursor-pointer">
-          {/* Logo container without the external golden border */}
-          <div className="w-16 h-16 bg-[#070B19] rounded-full flex items-center justify-center overflow-hidden">
+          <div
+            className="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden"
+            style={{ background: "var(--color-surface)" }}
+          >
             <img
               src={logo}
               alt="KS Online Logo"
@@ -16,7 +24,10 @@ export function Navbar({ onDownload }) {
             />
           </div>
           <div>
-            <h1 className="text-xl sm:text-2xl font-black tracking-wider text-amber-400 leading-none">
+            <h1
+              className="text-xl sm:text-2xl font-black tracking-wider leading-none"
+              style={{ color: "var(--color-primary-gold)" }}
+            >
               KS ONLINE
             </h1>
           </div>
