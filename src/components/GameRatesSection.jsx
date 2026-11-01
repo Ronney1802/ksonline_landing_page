@@ -16,7 +16,7 @@ export function GameRatesSection({ onDownload }) {
 
   return (
     <section
-      className="py-16 relative border-t"
+      className="py-12 relative border-t"
       style={{
         background: "var(--color-white-veil)",
         borderColor: "var(--color-primary-gold-soft-strong)",
@@ -75,7 +75,7 @@ export function GameRatesSection({ onDownload }) {
                       className="w-12 h-12 rounded-xl flex items-center justify-center border"
                       style={{
                         background: "var(--color-primary-gold-soft)",
-                        borderColor: "var(--color-cobalt-blue-border)",
+                        borderColor: "var(--color-primary-gold-soft-strong)",
                         color: "var(--color-primary-gold)",
                       }}
                     >
@@ -135,7 +135,7 @@ export function GameRatesSection({ onDownload }) {
                       className="w-16 h-16 rounded-2xl flex items-center justify-center border"
                       style={{
                         background: "var(--color-primary-gold-soft)",
-                        borderColor: "var(--color-primary-gold-border-strong)",
+                        borderColor: "var(--color-primary-gold-soft-strong)",
                         color: "var(--color-primary-gold)",
                       }}
                     >

@@ -4,7 +4,7 @@ import logo from "../assets/ksonline.png";
 export default function Footer({ onDownload }) {
   return (
     <footer
-      className="border-t py-10 px-4 text-center"
+      className="border-t py-12 px-4 text-center"
       style={{
         background:
           "linear-gradient(180deg, var(--color-white-soft), var(--color-surface-cream))",

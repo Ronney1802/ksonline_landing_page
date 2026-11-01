@@ -138,7 +138,7 @@ export function HeroSection({ onDownload }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
-          className="mb-20 p-3 rounded-2xl border text-center flex flex-wrap items-center justify-center gap-3 shadow-[0_0_20px_var(--color-primary-gold-soft)]"
+          className="mb-12 p-3 rounded-2xl border text-center flex flex-wrap items-center justify-center gap-3 shadow-[0_0_20px_var(--color-primary-gold-soft)]"
           style={{
             background:
               "linear-gradient(90deg, var(--color-primary-gold-veil), var(--color-white-glass), var(--color-primary-gold-veil))",
@@ -183,17 +183,17 @@ export function HeroSection({ onDownload }) {
 
         <div className="grid lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-5 text-center lg:text-left">
-            <Badge icon={ShieldCheck} color="amber" className="mb-6">
+            <Badge icon={ShieldCheck} color="amber" className="mb-4">
               100% OFFICIAL VERIFIED ANDROID APP
             </Badge>
 
             <h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight mb-6"
+              className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight mb-4"
               style={{ color: "var(--color-text-primary)" }}
             >
               PLAY & WIN WITH
               <span
-                className="block mt-2"
+                className="block mt-0"
                 style={{
                   background:
                     "linear-gradient(90deg, var(--color-rich-gold), var(--color-primary-gold), var(--color-deep-gold))",

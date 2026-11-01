@@ -5,7 +5,7 @@ import { features } from "../data/gameData";
 export function FeaturesSection() {
   return (
     <section
-      className="py-16 border-y relative"
+      className="py-14 border-y relative"
       style={{
         background: "var(--color-white-glass)",
         borderColor: "var(--color-primary-gold-soft-strong)",

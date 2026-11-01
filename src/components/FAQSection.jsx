@@ -12,11 +12,10 @@ export function FaqSection() {
 
   return (
     <section
-      className="py-16 border-t"
+      className="py-14 border-t"
       style={{
-        background:
-          "linear-gradient(180deg, var(--color-dark-background), var(--color-dark-navy))",
-        borderColor: "var(--color-border-strong)",
+        background: "var(--color-white-gold-soft)",
+        borderColor: "var(--color-primary-gold-soft-strong)",
       }}
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,22 +31,22 @@ export function FaqSection() {
                 key={idx}
                 className="rounded-2xl border overflow-hidden transition-all duration-300"
                 style={{
-                  background: "var(--color-card-surface)",
+                  background: "var(--color-card)",
                   borderColor: isOpen
-                    ? "var(--color-border-strong)"
-                    : "var(--color-border)",
+                    ? "var(--color-primary-gold-border-strong)"
+                    : "var(--color-primary-gold-border)",
                   boxShadow: isOpen
                     ? "0 12px 30px var(--color-primary-gold-soft)"
-                    : "0 6px 18px var(--color-black-soft)",
+                    : "0 6px 18px var(--color-mist-shadow)",
                 }}
               >
                 <button
                   onClick={() => toggleFaq(idx)}
                   className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base transition-colors duration-200"
                   style={{
-                    color: "var(--color-pure-platinum)",
+                    color: "var(--color-text-primary)",
                     background: isOpen
-                      ? "var(--color-elevated-surface)"
+                      ? "var(--color-surface-alt)"
                       : "transparent",
                   }}
                 >
@@ -68,9 +67,9 @@ export function FaqSection() {
                   <div
                     className="px-6 pb-4 text-xs sm:text-sm leading-relaxed border-t pt-3"
                     style={{
-                      color: "var(--color-metallic-silver)",
-                      borderColor: "var(--color-border)",
-                      background: "var(--color-elevated-surface)",
+                      color: "var(--color-text-secondary)",
+                      borderColor: "var(--color-primary-gold-border)",
+                      background: "var(--color-surface-alt)",
                     }}
                   >
                     {faq.a}

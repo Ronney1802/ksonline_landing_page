@@ -4,7 +4,7 @@ import { howItWorkSteps } from "../data/gameData";
 export function HowItWorksSection() {
   return (
     <section
-      className="py-20 border-y"
+      className="py-12 border-y"
       style={{
         background: "var(--color-white-glass)",
         borderColor: "var(--color-primary-gold-soft-strong)",

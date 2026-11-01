@@ -5,7 +5,7 @@ import { paymentMethods } from "../data/gameData";
 export function PaymentMethodsSection() {
   return (
     <section
-      className="py-16 border-b relative"
+      className="py-14 border-b relative"
       style={{
         background: "var(--color-white-gold-soft)",
         borderColor: "var(--color-primary-gold-soft-strong)",
