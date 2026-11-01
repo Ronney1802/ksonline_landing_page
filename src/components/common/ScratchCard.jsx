@@ -126,6 +126,8 @@ export function ScratchCard({ onReveal }) {
     setIsScratching(false);
   };
 
+  const prizeText = "+ ₹100 BONUS!";
+
   return (
     <div
       className="relative w-full h-32 rounded-xl overflow-hidden shadow-inner flex items-center justify-center select-none border"
@@ -137,6 +139,18 @@ export function ScratchCard({ onReveal }) {
           "0 12px 22px rgba(16, 185, 129, 0.08), inset 0 1px 0 rgba(255,255,255,0.7)",
       }}
     >
+      {/* Inline styles for the sequential character bounce */}
+      <style>{`
+        @keyframes charBounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-6px); }
+        }
+        .animate-char-bounce {
+          display: inline-block;
+          animation: charBounce 0.8s ease-in-out infinite;
+        }
+      `}</style>
+
       {/* 1. Underlying Prize Layer */}
       <div
         className="absolute inset-0 flex flex-col items-center justify-center p-3 text-center space-y-1"
@@ -146,10 +160,21 @@ export function ScratchCard({ onReveal }) {
         }}
       >
         <span
-          className="text-xl font-black tracking-wide "
+          className="text-xl font-black tracking-wide flex"
           style={{ color: "var(--color-text-primary)" }}
         >
-          + ₹100 BONUS!
+          {prizeText.split("").map((char, index) => (
+            <span
+              key={index}
+              className={isRevealed ? "animate-char-bounce" : ""}
+              style={{
+                animationDelay: `${index * 0.06}s`,
+                whiteSpace: char === " " ? "pre" : "normal",
+              }}
+            >
+              {char}
+            </span>
+          ))}
         </span>
       </div>
 
