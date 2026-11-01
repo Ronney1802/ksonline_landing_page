@@ -7,8 +7,8 @@ export function FeaturesSection() {
     <section
       className="py-16 border-y relative"
       style={{
-        background: "rgba(255,255,255,0.28)",
-        borderColor: "rgba(212,175,55,0.2)",
+        background: "var(--color-white-glass)",
+        borderColor: "var(--color-primary-gold-soft-strong)",
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

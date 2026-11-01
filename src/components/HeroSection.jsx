@@ -138,11 +138,11 @@ export function HeroSection({ onDownload }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
-          className="mb-20 p-3 rounded-2xl border text-center flex flex-wrap items-center justify-center gap-3 shadow-[0_0_20px_rgba(212,175,55,0.12)]"
+          className="mb-20 p-3 rounded-2xl border text-center flex flex-wrap items-center justify-center gap-3 shadow-[0_0_20px_var(--color-primary-gold-soft)]"
           style={{
             background:
-              "linear-gradient(90deg, rgba(243,229,171,0.35), rgba(255,255,255,0.85), rgba(243,229,171,0.35))",
-            borderColor: "rgba(212, 175, 55, 0.4)",
+              "linear-gradient(90deg, var(--color-primary-gold-veil), var(--color-white-glass), var(--color-primary-gold-veil))",
+            borderColor: "var(--color-primary-gold-border-strong)",
           }}
         >
           <Badge icon={Gift} color="green">
@@ -164,8 +164,8 @@ export function HeroSection({ onDownload }) {
           <div
             className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl border"
             style={{
-              background: "rgba(255,255,255,0.58)",
-              borderColor: "rgba(212, 175, 55, 0.34)",
+              background: "var(--color-white-frost)",
+              borderColor: "var(--color-primary-gold-border-strong)",
             }}
           >
             <Share2
@@ -304,8 +304,8 @@ export function HeroSection({ onDownload }) {
                 className="relative text-center flex flex-col justify-between p-6 sm:p-7 min-h-[440px]"
                 style={{
                   background:
-                    "linear-gradient(180deg, rgba(255,250,235,0.95), rgba(255,255,255,0.94))",
-                  borderColor: "rgba(212, 175, 55, 0.52)",
+                    "linear-gradient(180deg, var(--color-surface-ivory), var(--color-white-soft))",
+                  borderColor: "var(--color-primary-gold-border-bright)",
                 }}
               >
                 <div className="absolute top-2 right-2">
@@ -318,8 +318,8 @@ export function HeroSection({ onDownload }) {
                   <div
                     className="w-16 h-16 mx-auto rounded-2xl flex items-center justify-center mb-4 border-2"
                     style={{
-                      background: "rgba(212,175,55,0.12)",
-                      borderColor: "rgba(212,175,55,0.55)",
+                      background: "var(--color-primary-gold-soft)",
+                      borderColor: "var(--color-border-strong)",
                       color: "var(--color-primary-gold)",
                     }}
                   >
@@ -347,24 +347,24 @@ export function HeroSection({ onDownload }) {
                     className="w-full h-full rounded-full border-4 flex items-center justify-center"
                     style={{
                       background:
-                        "linear-gradient(135deg, rgba(212,175,55,0.95), rgba(15,23,42,0.9), rgba(212,175,55,0.72))",
-                      borderColor: "rgba(212,175,55,0.8)",
-                      boxShadow: "0 0 20px rgba(212,175,55,0.32)",
+                        "linear-gradient(135deg, var(--color-primary-gold), var(--color-dark-navy), var(--color-primary-gold-panel))",
+                      borderColor: "var(--color-primary-gold-border-bright)",
+                      boxShadow: "0 0 20px var(--color-primary-gold-glow)",
                       transform: `rotate(${rotation}deg)`,
                       transition: `transform ${spinDuration}s cubic-bezier(0.15, 0.85, 0.15, 1)`,
                     }}
                   >
-                    <div className="absolute w-full h-[2px] bg-[rgba(255,255,255,0.35)]"></div>
-                    <div className="absolute w-full h-[2px] bg-[rgba(255,255,255,0.35)] rotate-[30deg]"></div>
-                    <div className="absolute w-full h-[2px] bg-[rgba(255,255,255,0.35)] rotate-[60deg]"></div>
-                    <div className="absolute w-full h-[2px] bg-[rgba(255,255,255,0.35)] rotate-[90deg]"></div>
-                    <div className="absolute w-full h-[2px] bg-[rgba(255,255,255,0.35)] rotate-[120deg]"></div>
-                    <div className="absolute w-full h-[2px] bg-[rgba(255,255,255,0.35)] rotate-[150deg]"></div>
+                    <div className="absolute w-full h-[2px] bg-[var(--color-white-veil)]"></div>
+                    <div className="absolute w-full h-[2px] bg-[var(--color-white-veil)] rotate-[30deg]"></div>
+                    <div className="absolute w-full h-[2px] bg-[var(--color-white-veil)] rotate-[60deg]"></div>
+                    <div className="absolute w-full h-[2px] bg-[var(--color-white-veil)] rotate-[90deg]"></div>
+                    <div className="absolute w-full h-[2px] bg-[var(--color-white-veil)] rotate-[120deg]"></div>
+                    <div className="absolute w-full h-[2px] bg-[var(--color-white-veil)] rotate-[150deg]"></div>
                     <div
                       className="w-10 h-10 rounded-full border-2 z-10 flex items-center justify-center"
                       style={{
                         background: "var(--color-card)",
-                        borderColor: "rgba(212,175,55,0.8)",
+                        borderColor: "var(--color-primary-gold-border-bright)",
                       }}
                     >
                       <Gift
@@ -380,8 +380,8 @@ export function HeroSection({ onDownload }) {
                   <div
                     className="mt-2 text-center p-2 rounded-lg border font-bold text-xs animate-bounce"
                     style={{
-                      background: "rgba(16,185,129,0.12)",
-                      borderColor: "rgba(16,185,129,0.45)",
+                      background: "var(--color-success-soft)",
+                      borderColor: "var(--color-success-border-strong)",
                       color: "var(--color-success)",
                     }}
                   >
@@ -393,8 +393,8 @@ export function HeroSection({ onDownload }) {
                     disabled={isSpinning}
                     className="mt-3 w-full py-2 px-3 rounded-lg border text-xs font-extrabold transition tracking-wide active:scale-95 disabled:opacity-50"
                     style={{
-                      background: "rgba(212,175,55,0.1)",
-                      borderColor: "rgba(212,175,55,0.42)",
+                      background: "var(--color-primary-gold-soft)",
+                      borderColor: "var(--color-primary-gold-border-strong)",
                       color: "var(--color-primary-gold)",
                     }}
                   >
@@ -419,8 +419,8 @@ export function HeroSection({ onDownload }) {
                 className="relative text-center flex flex-col justify-between p-6 sm:p-7 min-h-[440px]"
                 style={{
                   background:
-                    "linear-gradient(180deg, rgba(240,248,255,0.95), rgba(255,255,255,0.94))",
-                  borderColor: "rgba(16,185,129,0.45)",
+                    "linear-gradient(180deg, var(--color-login-input-fill), var(--color-white-soft))",
+                  borderColor: "var(--color-success-border-strong)",
                 }}
               >
                 <div className="absolute top-2 right-2">
@@ -433,8 +433,8 @@ export function HeroSection({ onDownload }) {
                   <div
                     className="w-16 h-16 mx-auto rounded-2xl flex items-center justify-center mb-4 border-2"
                     style={{
-                      background: "rgba(16,185,129,0.12)",
-                      borderColor: "rgba(16,185,129,0.55)",
+                      background: "var(--color-success-soft)",
+                      borderColor: "var(--color-success-border-strong)",
                       color: "var(--color-success)",
                     }}
                   >

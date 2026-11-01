@@ -35,6 +35,36 @@
   --color-login-border: #e1e5ec;
   --color-login-divider: #d7dce4;
   --color-login-track: #e9ecf1;
+
+  --color-primary-gold-soft: rgba(212, 175, 55, 0.12);
+  --color-primary-gold-soft-strong: rgba(212, 175, 55, 0.18);
+  --color-primary-gold-border: rgba(212, 175, 55, 0.22);
+  --color-primary-gold-border-strong: rgba(212, 175, 55, 0.42);
+  --color-primary-gold-border-bright: rgba(212, 175, 55, 0.52);
+  --color-primary-gold-glow: rgba(212, 175, 55, 0.28);
+  --color-primary-gold-veil: rgba(243, 229, 171, 0.35);
+  --color-success-soft: rgba(16, 185, 129, 0.12);
+  --color-success-border: rgba(16, 185, 129, 0.3);
+  --color-success-border-strong: rgba(16, 185, 129, 0.45);
+  --color-success-glow: rgba(16, 185, 129, 0.22);
+  --color-cobalt-blue-soft: rgba(37, 99, 235, 0.1);
+  --color-cobalt-blue-border: rgba(37, 99, 235, 0.35);
+  --color-cobalt-blue-glow: rgba(37, 99, 235, 0.18);
+  --color-rose-soft: rgba(220, 38, 38, 0.08);
+  --color-rose-border: rgba(220, 38, 38, 0.25);
+  --color-white-soft: rgba(255, 255, 255, 0.96);
+  --color-white-glass: rgba(255, 255, 255, 0.85);
+  --color-white-frost: rgba(255, 255, 255, 0.58);
+  --color-white-veil: rgba(255, 255, 255, 0.35);
+  --color-surface-cream: rgba(245, 239, 226, 0.96);
+  --color-surface-ivory: rgba(255, 250, 235, 0.96);
+  --color-surface-sky: rgba(241, 245, 255, 0.96);
+  --color-mist-shadow: rgba(15, 23, 42, 0.06);
+  --color-black-soft: rgba(0, 0, 0, 0.3);
+  --color-white-over: rgba(255, 255, 255, 0.7);
+  --color-surface-card: rgba(255, 255, 255, 0.76);
+  --color-primary-gold-panel: rgba(212, 175, 55, 0.72);
+  --color-white-gold-soft: rgba(255, 255, 255, 0.3);
 }
 
 html {

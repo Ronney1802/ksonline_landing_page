@@ -15,7 +15,7 @@ export function BonusModal({ isOpen, onClose, rewardText, onDownload }) {
         style={{
           background: "var(--color-card)",
           borderColor: "var(--color-border)",
-          boxShadow: "0 0 30px rgba(212, 175, 55, 0.2)",
+          boxShadow: "0 0 30px var(--color-primary-gold-glow)",
         }}
       >
         {/* Close Button */}
@@ -23,7 +23,7 @@ export function BonusModal({ isOpen, onClose, rewardText, onDownload }) {
           onClick={onClose}
           className="absolute top-4 right-4 p-2 rounded-full border transition hover:opacity-80"
           style={{
-            background: "rgba(255,255,255,0.05)",
+            background: "var(--color-white-soft)",
             borderColor: "var(--color-border)",
             color: "var(--color-text-secondary)",
           }}
@@ -35,8 +35,8 @@ export function BonusModal({ isOpen, onClose, rewardText, onDownload }) {
         <div
           className="w-16 h-16 mx-auto rounded-2xl flex items-center justify-center mb-5 border-2 shadow-lg"
           style={{
-            background: "rgba(212,175,55,0.12)",
-            borderColor: "rgba(212,175,55,0.55)",
+            background: "var(--color-primary-gold-soft)",
+            borderColor: "var(--color-border-strong)",
             color: "var(--color-primary-gold)",
           }}
         >
@@ -53,8 +53,8 @@ export function BonusModal({ isOpen, onClose, rewardText, onDownload }) {
         <div
           className="text-2xl sm:text-3xl font-black mb-4 py-2 px-4 rounded-xl border inline-block"
           style={{
-            background: "rgba(16,185,129,0.1)",
-            borderColor: "rgba(16,185,129,0.3)",
+            background: "var(--color-success-soft)",
+            borderColor: "var(--color-success-border)",
             color: "var(--color-success)",
           }}
         >
@@ -92,8 +92,8 @@ export function BonusModal({ isOpen, onClose, rewardText, onDownload }) {
           <div
             className="p-4 rounded-2xl border flex items-center gap-3 text-left mt-2"
             style={{
-              background: "rgba(220, 38, 38, 0.08)",
-              borderColor: "rgba(220, 38, 38, 0.25)",
+              background: "var(--color-rose-soft)",
+              borderColor: "var(--color-rose-border)",
             }}
           >
             <Smartphone className="w-8 h-8 shrink-0 text-red-500" />

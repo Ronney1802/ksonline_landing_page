@@ -11,17 +11,17 @@ export function Card({
   const variants = {
     default: {
       background:
-        "linear-gradient(180deg, rgba(255,255,255,0.9), rgba(245,239,226,0.96))",
-      borderColor: "rgba(212, 175, 55, 0.22)",
+        "linear-gradient(180deg, var(--color-white-soft), var(--color-surface-cream))",
+      borderColor: "var(--color-primary-gold-border)",
     },
     dark: {
       background: "var(--color-surface)",
-      borderColor: "rgba(212, 175, 55, 0.18)",
+      borderColor: "var(--color-primary-gold-soft-strong)",
     },
     gold: {
       background:
-        "linear-gradient(90deg, rgba(255,250,235,0.96), rgba(241,245,255,0.96))",
-      borderColor: "rgba(212, 175, 55, 0.46)",
+        "linear-gradient(90deg, var(--color-surface-ivory), var(--color-surface-sky))",
+      borderColor: "var(--color-primary-gold-border-strong)",
     },
   };
 
@@ -29,8 +29,8 @@ export function Card({
     ? "hover:border-[var(--color-primary-gold)] hover:-translate-y-1"
     : "";
   const glowStyles = glow
-    ? { boxShadow: "0 0 25px rgba(212, 175, 55, 0.18)" }
-    : { boxShadow: "0 16px 32px rgba(15, 23, 42, 0.06)" };
+    ? { boxShadow: "0 0 25px var(--color-primary-gold-soft-strong)" }
+    : { boxShadow: "0 16px 32px var(--color-mist-shadow)" };
 
   return (
     <div

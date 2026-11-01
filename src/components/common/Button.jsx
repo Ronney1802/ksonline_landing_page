@@ -16,25 +16,26 @@ export function Button({
       background:
         "linear-gradient(135deg, var(--color-primary-gold), var(--color-rich-gold))",
       color: "var(--color-btn-dark)",
-      borderColor: "rgba(212, 175, 55, 0.6)",
-      boxShadow: "0 0 20px rgba(212, 175, 55, 0.28)",
+      borderColor: "var(--color-primary-gold-border-bright)",
+      boxShadow: "0 0 20px var(--color-primary-gold-glow)",
     },
     telegram: {
       background: "var(--color-cobalt-blue)",
-      color: "#fff",
-      borderColor: "rgba(37, 99, 235, 0.35)",
-      boxShadow: "0 0 20px rgba(37, 99, 235, 0.18)",
+      color: "var(--color-white)",
+      borderColor: "var(--color-cobalt-blue-border)",
+      boxShadow: "0 0 20px var(--color-cobalt-blue-glow)",
     },
     outline: {
       background: "var(--color-surface)",
       color: "var(--color-primary-gold)",
-      borderColor: "rgba(212, 175, 55, 0.45)",
+      borderColor: "var(--color-primary-gold-border-strong)",
     },
     emerald: {
-      background: "linear-gradient(135deg, #10b981, #34d399)",
+      background:
+        "linear-gradient(135deg, var(--color-success), var(--color-electric-cyan))",
       color: "var(--color-btn-dark)",
-      borderColor: "rgba(16, 185, 129, 0.45)",
-      boxShadow: "0 0 20px rgba(16, 185, 129, 0.22)",
+      borderColor: "var(--color-success-border-strong)",
+      boxShadow: "0 0 20px var(--color-success-glow)",
     },
   };
 

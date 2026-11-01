@@ -6,8 +6,8 @@ export function HowItWorksSection() {
     <section
       className="py-20 border-y"
       style={{
-        background: "rgba(255,255,255,0.25)",
-        borderColor: "rgba(212,175,55,0.2)",
+        background: "var(--color-white-glass)",
+        borderColor: "var(--color-primary-gold-soft-strong)",
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,7 +22,7 @@ export function HowItWorksSection() {
               className="p-6 rounded-2xl border text-center flex flex-col items-center"
               style={{
                 background: "var(--color-card)",
-                borderColor: "rgba(212,175,55,0.18)",
+                borderColor: "var(--color-primary-gold-soft-strong)",
               }}
             >
               <div
@@ -31,7 +31,7 @@ export function HowItWorksSection() {
                   background:
                     "linear-gradient(135deg, var(--color-primary-gold), var(--color-rich-gold))",
                   color: "var(--color-btn-dark)",
-                  boxShadow: "0 0 15px rgba(212,175,55,0.28)",
+                  boxShadow: "0 0 15px var(--color-primary-gold-glow)",
                 }}
               >
                 {step.num}

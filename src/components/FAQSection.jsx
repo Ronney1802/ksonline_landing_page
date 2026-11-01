@@ -37,8 +37,8 @@ export function FaqSection() {
                     ? "var(--color-border-strong)"
                     : "var(--color-border)",
                   boxShadow: isOpen
-                    ? "0 12px 30px rgba(212, 175, 55, 0.15)"
-                    : "0 6px 18px rgba(0, 0, 0, 0.3)",
+                    ? "0 12px 30px var(--color-primary-gold-soft)"
+                    : "0 6px 18px var(--color-black-soft)",
                 }}
               >
                 <button

@@ -37,11 +37,11 @@ export function ScratchCard({ onReveal }) {
     ctx.fillRect(0, 0, width, height);
 
     const sheen = ctx.createLinearGradient(0, 0, width, 0);
-    sheen.addColorStop(0, "rgba(255,255,255,0.28)");
-    sheen.addColorStop(0.18, "rgba(255,255,255,0.7)");
-    sheen.addColorStop(0.32, "rgba(255,255,255,0.08)");
-    sheen.addColorStop(0.72, "rgba(255,255,255,0.56)");
-    sheen.addColorStop(1, "rgba(255,255,255,0.18)");
+    sheen.addColorStop(0, getThemeColor("--color-white-veil"));
+    sheen.addColorStop(0.18, getThemeColor("--color-white"));
+    sheen.addColorStop(0.32, getThemeColor("--color-white-frost"));
+    sheen.addColorStop(0.72, getThemeColor("--color-white-soft"));
+    sheen.addColorStop(1, getThemeColor("--color-white-veil"));
     ctx.fillStyle = sheen;
     ctx.fillRect(0, 0, width, height);
 
@@ -133,10 +133,10 @@ export function ScratchCard({ onReveal }) {
       className="relative w-full h-32 rounded-xl overflow-hidden shadow-inner flex items-center justify-center select-none border"
       style={{
         background:
-          "linear-gradient(135deg, #f2fff9 0%, #caf4dd 28%, #eee2b0 60%, #f3de9d 100%)",
-        borderColor: "rgba(11, 131, 91, 0.38)",
+          "linear-gradient(135deg, var(--color-login-warm-white) 0%, var(--color-login-pale-gold) 28%, var(--color-login-button-light) 60%, var(--color-login-coin-circle) 100%)",
+        borderColor: "var(--color-success-border)",
         boxShadow:
-          "0 12px 22px rgba(16, 185, 129, 0.08), inset 0 1px 0 rgba(255,255,255,0.7)",
+          "0 12px 22px var(--color-success-soft), inset 0 1px 0 var(--color-white-over)",
       }}
     >
       {/* Inline styles for the sequential character bounce */}

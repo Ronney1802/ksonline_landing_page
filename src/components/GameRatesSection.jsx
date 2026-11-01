@@ -18,8 +18,8 @@ export function GameRatesSection({ onDownload }) {
     <section
       className="py-16 relative border-t"
       style={{
-        background: "rgba(255,255,255,0.35)",
-        borderColor: "rgba(212,175,55,0.2)",
+        background: "var(--color-white-veil)",
+        borderColor: "var(--color-primary-gold-soft-strong)",
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -43,14 +43,14 @@ export function GameRatesSection({ onDownload }) {
                         background:
                           "linear-gradient(90deg, var(--color-primary-gold), var(--color-rich-gold))",
                         color: "var(--color-btn-dark)",
-                        borderColor: "rgba(212,175,55,0.72)",
-                        boxShadow: "0 0 20px rgba(212,175,55,0.28)",
+                        borderColor: "var(--color-primary-gold-panel)",
+                        boxShadow: "0 0 20px var(--color-primary-gold-glow)",
                         transform: "scale(1.04)",
                       }
                     : {
                         background: "var(--color-card)",
                         color: "var(--color-text-secondary)",
-                        borderColor: "rgba(212,175,55,0.18)",
+                        borderColor: "var(--color-primary-gold-soft-strong)",
                       }
                 }
               >
@@ -74,8 +74,8 @@ export function GameRatesSection({ onDownload }) {
                     <div
                       className="w-12 h-12 rounded-xl flex items-center justify-center border"
                       style={{
-                        background: "rgba(212,175,55,0.1)",
-                        borderColor: "rgba(212,175,55,0.35)",
+                        background: "var(--color-primary-gold-soft)",
+                        borderColor: "var(--color-cobalt-blue-border)",
                         color: "var(--color-primary-gold)",
                       }}
                     >
@@ -100,7 +100,7 @@ export function GameRatesSection({ onDownload }) {
                     className="px-4 py-2 rounded-xl border font-bold text-xs sm:text-sm flex items-center gap-2"
                     style={{
                       background: "var(--color-surface)",
-                      borderColor: "rgba(212,175,55,0.2)",
+                      borderColor: "var(--color-primary-gold-soft-strong)",
                     }}
                   >
                     <span style={{ color: "var(--color-text-muted)" }}>
@@ -134,8 +134,8 @@ export function GameRatesSection({ onDownload }) {
                     <div
                       className="w-16 h-16 rounded-2xl flex items-center justify-center border"
                       style={{
-                        background: "rgba(212,175,55,0.1)",
-                        borderColor: "rgba(212,175,55,0.46)",
+                        background: "var(--color-primary-gold-soft)",
+                        borderColor: "var(--color-primary-gold-border-strong)",
                         color: "var(--color-primary-gold)",
                       }}
                     >
@@ -160,7 +160,7 @@ export function GameRatesSection({ onDownload }) {
                     className="px-6 py-3 rounded-2xl border font-bold text-base flex items-center gap-3"
                     style={{
                       background: "var(--color-surface)",
-                      borderColor: "rgba(212,175,55,0.26)",
+                      borderColor: "var(--color-primary-gold-border)",
                     }}
                   >
                     <span style={{ color: "var(--color-text-muted)" }}>
@@ -184,8 +184,8 @@ export function GameRatesSection({ onDownload }) {
             className="max-w-5xl mx-auto rounded-3xl p-6 sm:p-8 border"
             style={{
               background:
-                "linear-gradient(180deg, rgba(255,255,255,0.9), rgba(245,239,226,0.96))",
-              borderColor: "rgba(212,175,55,0.32)",
+                "linear-gradient(180deg, var(--color-white-soft), var(--color-surface-cream))",
+              borderColor: "var(--color-primary-gold-border)",
             }}
           >
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -195,7 +195,7 @@ export function GameRatesSection({ onDownload }) {
                   className="p-4 rounded-xl border flex flex-col justify-between"
                   style={{
                     background: "var(--color-surface)",
-                    borderColor: "rgba(212,175,55,0.18)",
+                    borderColor: "var(--color-primary-gold-soft-strong)",
                   }}
                 >
                   <div>
@@ -215,8 +215,8 @@ export function GameRatesSection({ onDownload }) {
                   <div
                     className="mt-3 px-3 py-2 rounded-lg border text-xs font-bold flex items-center justify-between"
                     style={{
-                      background: "rgba(255,255,255,0.76)",
-                      borderColor: "rgba(212,175,55,0.16)",
+                      background: "var(--color-surface-card)",
+                      borderColor: "var(--color-primary-gold-soft-strong)",
                     }}
                   >
                     <span style={{ color: "var(--color-text-muted)" }}>

@@ -25,14 +25,17 @@ export function LiveTicker() {
       className="relative z-20 border-b py-2 px-4 shadow-md overflow-hidden"
       style={{
         background:
-          "linear-gradient(90deg, rgba(255,255,255,0.96), rgba(255,247,224,0.96), rgba(255,255,255,0.96))",
-        borderColor: "rgba(212, 175, 55, 0.26)",
+          "linear-gradient(90deg, var(--color-white-soft), var(--color-login-pale-gold), var(--color-white-soft))",
+        borderColor: "var(--color-border)",
       }}
     >
       <div className="max-w-7xl mx-auto flex items-center gap-3 text-xs font-semibold">
         <span
           className="font-extrabold uppercase px-2.5 py-1 rounded-md text-[10px] tracking-wider flex items-center gap-1 shrink-0 shadow-sm animate-pulse z-10"
-          style={{ background: "var(--color-tilak-red)", color: "#fff" }}
+          style={{
+            background: "var(--color-tilak-red)",
+            color: "var(--color-white)",
+          }}
         >
           ⚡ LIVE UPDATE
         </span>

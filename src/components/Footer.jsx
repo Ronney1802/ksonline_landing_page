@@ -7,8 +7,8 @@ export default function Footer({ onDownload }) {
       className="border-t py-10 px-4 text-center"
       style={{
         background:
-          "linear-gradient(180deg, rgba(255,255,255,0.9), rgba(245,239,226,0.96))",
-        borderColor: "rgba(212,175,55,0.2)",
+          "linear-gradient(180deg, var(--color-white-soft), var(--color-surface-cream))",
+        borderColor: "var(--color-primary-gold-soft-strong)",
       }}
     >
       <div className="max-w-7xl mx-auto flex flex-col items-center gap-6">
@@ -59,7 +59,7 @@ export default function Footer({ onDownload }) {
           className="text-[11px] pt-4 border-t w-full max-w-xl"
           style={{
             color: "var(--color-text-muted)",
-            borderColor: "rgba(212,175,55,0.18)",
+            borderColor: "var(--color-primary-gold-soft-strong)",
           }}
         >
           © {new Date().getFullYear()} KS ONLINE Official Portal. All rights

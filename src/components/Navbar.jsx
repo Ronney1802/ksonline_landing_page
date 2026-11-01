@@ -7,8 +7,8 @@ export function Navbar({ onDownload }) {
     <header
       className="relative z-20 px-4 py-3 sm:py-2 backdrop-blur-md border-b"
       style={{
-        background: "rgba(255, 253, 249, 0.85)",
-        borderColor: "rgba(212, 175, 55, 0.24)",
+        background: "var(--color-white-glass)",
+        borderColor: "var(--color-border)",
       }}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">

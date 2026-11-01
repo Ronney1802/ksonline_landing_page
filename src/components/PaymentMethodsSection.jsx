@@ -7,8 +7,8 @@ export function PaymentMethodsSection() {
     <section
       className="py-16 border-b relative"
       style={{
-        background: "rgba(255,255,255,0.3)",
-        borderColor: "rgba(212,175,55,0.2)",
+        background: "var(--color-white-gold-soft)",
+        borderColor: "var(--color-primary-gold-soft-strong)",
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,8 +33,8 @@ export function PaymentMethodsSection() {
                 <div
                   className="w-12 h-12 rounded-xl border flex items-center justify-center mb-3 shadow-inner"
                   style={{
-                    background: "rgba(255,255,255,0.66)",
-                    borderColor: "rgba(212,175,55,0.18)",
+                    background: "var(--color-white-frost)",
+                    borderColor: "var(--color-primary-gold-soft-strong)",
                     color: pm.color,
                   }}
                 >
@@ -51,8 +51,8 @@ export function PaymentMethodsSection() {
                   className="inline-flex items-center gap-1 text-[10px] font-extrabold px-2 py-0.5 rounded border"
                   style={{
                     color: "var(--color-success)",
-                    background: "rgba(16,185,129,0.1)",
-                    borderColor: "rgba(16,185,129,0.22)",
+                    background: "var(--color-success-soft)",
+                    borderColor: "var(--color-success-border)",
                   }}
                 >
                   <Check className="w-3 h-3" /> {pm.speed}

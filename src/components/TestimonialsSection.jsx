@@ -32,7 +32,7 @@ export function TestimonialsSection() {
               </div>
               <div
                 className="pt-4 flex items-center justify-between border-t"
-                style={{ borderColor: "rgba(212,175,55,0.18)" }}
+                style={{ borderColor: "var(--color-primary-gold-soft-strong)" }}
               >
                 <div>
                   <h4
