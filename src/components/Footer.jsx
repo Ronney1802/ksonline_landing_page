@@ -12,23 +12,21 @@ export default function Footer({ onDownload }) {
       }}
     >
       <div className="max-w-7xl mx-auto flex flex-col items-center gap-6">
-        <div className="flex items-center gap-3">
+        {/* Logo displayed inside a single row, larger rounded square container */}
+        <div className="flex items-center justify-center">
           <div
-            className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden"
-            style={{ background: "var(--color-surface)" }}
+            className="w-32 h-32 sm:w-24 sm:h-24 rounded-2xl flex items-center justify-center overflow-hidden shadow-md border"
+            style={{
+              background: "var(--color-surface)",
+              borderColor: "var(--color-border)",
+            }}
           >
             <img
               src={logo}
               alt="KS Online Logo"
-              className="w-full h-full object-contain"
+              className="w-full h-full object-cover"
             />
           </div>
-          <span
-            className="text-xl font-black tracking-wider"
-            style={{ color: "var(--color-primary-gold)" }}
-          >
-            KS ONLINE
-          </span>
         </div>
 
         <p
