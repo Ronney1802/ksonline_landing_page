@@ -474,6 +474,104 @@ export default function App() {
               </div>
 
               {/* FEATURE 2: SCRATCH & WIN CARD */}
+              {/* First method :- */}
+              {/* <Card
+                glow
+                variant="gold"
+                className="relative text-center flex flex-col justify-between p-6 sm:p-7 min-h-[440px]"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(240,248,255,0.95), rgba(255,255,255,0.94))",
+                  borderColor: "rgba(16,185,129,0.45)",
+                }}
+              >
+                <div className="absolute top-2 right-2">
+                  <Badge icon={Gift} color="green">
+                    DAILY BONUS
+                  </Badge>
+                </div>
+
+                <div className="pt-2">
+                  <div
+                    className="w-16 h-16 mx-auto rounded-2xl flex items-center justify-center mb-4 border-2"
+                    style={{
+                      background: "rgba(16,185,129,0.12)",
+                      borderColor: "rgba(16,185,129,0.55)",
+                      color: "var(--color-success)",
+                    }}
+                  >
+                    <Ticket className="w-8 h-8 rotate-[-12deg]" />
+                  </div>
+
+                  <h3
+                    className="text-xl font-black uppercase tracking-wider mb-2"
+                    style={{ color: "var(--color-text-primary)" }}
+                  >
+                    SCRATCH A CARD
+                  </h3>
+                  <p
+                    className="text-xs leading-relaxed max-w-[220px] mx-auto"
+                    style={{ color: "var(--color-text-secondary)" }}
+                  >
+                    Scratch your daily lucky card or get bonus scratch cards
+                    when adding balance to credit extra game points straight
+                    into your wallet!
+                  </p>
+                </div>
+
+                <div
+                  onClick={() => setIsScratched(true)}
+                  className="relative w-full h-32 rounded-xl border-2 border-dashed cursor-pointer flex flex-col items-center justify-center p-3 text-center overflow-hidden transition-all hover:scale-[1.02]"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, rgba(255,255,255,0.96), rgba(245,245,245,0.96))",
+                    borderColor: "rgba(212,175,55,0.6)",
+                  }}
+                >
+                  {!isScratched ? (
+                    <div className="space-y-1">
+                      <Sparkles
+                        className="w-7 h-7 mx-auto animate-pulse"
+                        style={{ color: "var(--color-primary-gold)" }}
+                      />
+                      <span
+                        className="text-xs font-black block uppercase"
+                        style={{ color: "var(--color-primary-gold)" }}
+                      >
+                        Click To Scratch Card
+                      </span>
+                      <span
+                        className="text-[10px] block"
+                        style={{ color: "var(--color-text-muted)" }}
+                      >
+                        Uncover Instant Bonus
+                      </span>
+                    </div>
+                  ) : (
+                    <div className="space-y-1 animate-fade-in">
+                      <span
+                        className="text-2xl font-black block"
+                        style={{ color: "var(--color-primary-gold)" }}
+                      >
+                        + ₹100 BONUS
+                      </span>
+                      <span
+                        className="text-[11px] font-bold block"
+                        style={{ color: "var(--color-success)" }}
+                      >
+                        Points Added To Wallet!
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                <Button onClick={onDownload} size="sm" variant="emerald">
+                  <Download className="w-3.5 h-3.5 stroke-[3]" />
+                  Get Unlimited Cards On App
+                </Button>
+              </Card> */}
+
+              {/* Second method :- */}
               <div className="rounded-2xl bg-gradient-to-b from-[#0e1838] to-[#091024] p-5 border border-amber-500/40 shadow-xl flex flex-col justify-between relative overflow-hidden group">
                 <div className="absolute top-0 right-0 bg-emerald-400 text-slate-950 font-black text-[9px] uppercase px-3 py-1 rounded-bl-xl tracking-wider">
                   BONUS POINTS

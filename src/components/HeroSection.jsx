@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   ShieldCheck,
   Download,
@@ -12,32 +12,130 @@ import {
 import { Button } from "./common/Button";
 import { Badge } from "./common/Badge";
 import { Card } from "./common/Card";
+import { ScratchCard } from "./common/ScratchCard";
+import wheelSpinAudio from "../assets/wheelSpin.mp3";
+import { BonusModal } from "./BonusModal";
 
 export function HeroSection({ onDownload }) {
   const [isSpinning, setIsSpinning] = useState(false);
   const [spinResult, setSpinResult] = useState(null);
-  const [isScratched, setIsScratched] = useState(false);
-  const [wheelRotation, setWheelRotation] = useState(0);
+
+  // State to control modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [wonReward, setWonReward] = useState("");
+
+  // New states for precise rotation and dynamic timing
+  const [rotation, setRotation] = useState(0);
+  const [spinDuration, setSpinDuration] = useState(4); // default duration in seconds
+
+  const spinAudioRef = useRef(null);
+
+  const rewards = [
+    "🎉 ₹100 Bonus",
+    "🎉 ₹300 Bonus",
+    "🎉 ₹500 Bonus",
+    "🎉 ₹1000 Bonus",
+  ];
+
+  useEffect(() => {
+    spinAudioRef.current = new Audio(wheelSpinAudio);
+    spinAudioRef.current.loop = true;
+
+    return () => {
+      if (spinAudioRef.current) {
+        spinAudioRef.current.pause();
+        spinAudioRef.current = null;
+      }
+    };
+  }, []);
 
   const handleSpinDemo = () => {
     if (isSpinning) return;
     setIsSpinning(true);
     setSpinResult(null);
 
-    const extraSpins = 5 + Math.floor(Math.random() * 5);
-    const newRotation =
-      wheelRotation + extraSpins * 360 + Math.floor(Math.random() * 360);
-    setWheelRotation(newRotation);
+    // 1. Randomize duration between 3.5 and 5.5 seconds
+    const randomDuration = 3.5 + Math.random() * 2;
+    setSpinDuration(randomDuration);
 
+    // 2. Pick a random reward index
+    const winningIndex = Math.floor(Math.random() * rewards.length);
+    const chosenReward = rewards[winningIndex];
+
+    // 3. Calculate rotation math
+    const totalSegments = rewards.length;
+    const degreesPerSegment = 360 / totalSegments;
+
+    const extraFullRotations = (5 + Math.floor(Math.random() * 4)) * 360;
+    const targetOffset =
+      winningIndex * degreesPerSegment + degreesPerSegment / 2;
+    const nextRotation =
+      rotation + extraFullRotations + (360 - (rotation % 360)) + targetOffset;
+
+    setRotation(nextRotation);
+
+    // 4. Play audio asset and sync pitch/speed deceleration
+    if (spinAudioRef.current) {
+      spinAudioRef.current.currentTime = 0;
+      spinAudioRef.current.playbackRate = 1.5; // Start fast
+      spinAudioRef.current.play().catch((err) => {
+        console.log("Audio autoplay blocked by browser policy:", err);
+      });
+
+      const startTime = performance.now();
+      const durationMs = randomDuration * 1000;
+
+      // Frame-by-frame loop to slow down audio matching the cubic-bezier slowdown
+      const updateAudioSpeed = (now) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / durationMs, 1);
+
+        if (spinAudioRef.current && isSpinning) {
+          // Approximating cubic-bezier deceleration curve: drops speed from 1.5 down to 0.15
+          const easeOutRate = 1.5 - Math.pow(progress, 2.5) * 1.35;
+          spinAudioRef.current.playbackRate = Math.max(0.15, easeOutRate);
+
+          if (progress < 1) {
+            requestAnimationFrame(updateAudioSpeed);
+          }
+        }
+      };
+      requestAnimationFrame(updateAudioSpeed);
+    }
+
+    // 5. Stop spinning and reveal result after randomized duration
     setTimeout(() => {
-      const rewards = ["₹100 Bonus", "2x Points", "₹500 Cash", "Jackpot Key"];
-      setSpinResult(rewards[Math.floor(Math.random() * rewards.length)]);
+      setSpinResult(chosenReward);
       setIsSpinning(false);
-    }, 1000);
+
+      if (spinAudioRef.current) {
+        spinAudioRef.current.pause();
+        spinAudioRef.current.currentTime = 0;
+        spinAudioRef.current.playbackRate = 1.0; // Reset playback rate
+      }
+
+      // Automatically open modal once result is loaded
+      setWonReward(chosenReward);
+      setIsModalOpen(true);
+    }, randomDuration * 1000);
+  };
+
+  // Handler for when scratch card is fully revealed
+  const handleCardReveal = (rewardText) => {
+    setWonReward(rewardText);
+    setIsModalOpen(true);
   };
 
   return (
     <section className="relative pt-8 pb-16 lg:pt-12 lg:pb-20 overflow-hidden z-10">
+      {/* Render the Bonus Modal */}
+      <BonusModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        rewardText={wonReward}
+        onDownload={onDownload}
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
           className="mb-20 p-3 rounded-2xl border text-center flex flex-wrap items-center justify-center gap-3 shadow-[0_0_20px_rgba(212,175,55,0.12)]"
@@ -244,21 +342,24 @@ export function HeroSection({ onDownload }) {
                 </div>
 
                 <div className="relative w-36 h-36 mx-auto my-2 flex items-center justify-center">
+                  {/* Wheel Element with Controlled Dynamic Transform and Transition */}
                   <div
-                    className="w-full h-full rounded-full border-4 transition-transform duration-3000 ease-out flex items-center justify-center"
+                    className="w-full h-full rounded-full border-4 flex items-center justify-center"
                     style={{
                       background:
                         "linear-gradient(135deg, rgba(212,175,55,0.95), rgba(15,23,42,0.9), rgba(212,175,55,0.72))",
                       borderColor: "rgba(212,175,55,0.8)",
-                      transform: `rotate(${wheelRotation}deg)`,
                       boxShadow: "0 0 20px rgba(212,175,55,0.32)",
+                      transform: `rotate(${rotation}deg)`,
+                      transition: `transform ${spinDuration}s cubic-bezier(0.15, 0.85, 0.15, 1)`,
                     }}
                   >
                     <div className="absolute w-full h-[2px] bg-[rgba(255,255,255,0.35)]"></div>
-                    <div className="absolute w-full h-[2px] bg-[rgba(255,255,255,0.35)] rotate-45"></div>
-                    <div className="absolute w-full h-[2px] bg-[rgba(255,255,255,0.35)] rotate-90"></div>
-                    <div className="absolute w-full h-[2px] bg-[rgba(255,255,255,0.35)] rotate-[135deg]"></div>
-
+                    <div className="absolute w-full h-[2px] bg-[rgba(255,255,255,0.35)] rotate-[30deg]"></div>
+                    <div className="absolute w-full h-[2px] bg-[rgba(255,255,255,0.35)] rotate-[60deg]"></div>
+                    <div className="absolute w-full h-[2px] bg-[rgba(255,255,255,0.35)] rotate-[90deg]"></div>
+                    <div className="absolute w-full h-[2px] bg-[rgba(255,255,255,0.35)] rotate-[120deg]"></div>
+                    <div className="absolute w-full h-[2px] bg-[rgba(255,255,255,0.35)] rotate-[150deg]"></div>
                     <div
                       className="w-10 h-10 rounded-full border-2 z-10 flex items-center justify-center"
                       style={{
@@ -284,20 +385,20 @@ export function HeroSection({ onDownload }) {
                       color: "var(--color-success)",
                     }}
                   >
-                    🎉 Won: {spinResult}!
+                    {spinResult}!
                   </div>
                 ) : (
                   <button
                     onClick={handleSpinDemo}
                     disabled={isSpinning}
-                    className="mt-3 w-full py-2 px-3 rounded-lg border text-xs font-extrabold transition tracking-wide active:scale-95"
+                    className="mt-3 w-full py-2 px-3 rounded-lg border text-xs font-extrabold transition tracking-wide active:scale-95 disabled:opacity-50"
                     style={{
                       background: "rgba(212,175,55,0.1)",
                       borderColor: "rgba(212,175,55,0.42)",
                       color: "var(--color-primary-gold)",
                     }}
                   >
-                    TEST SPIN NOW
+                    {isSpinning ? "SPINNING..." : "TEST SPIN NOW"}
                   </button>
                 )}
 
@@ -347,7 +448,7 @@ export function HeroSection({ onDownload }) {
                     SCRATCH A CARD
                   </h3>
                   <p
-                    className="text-xs leading-relaxed max-w-[220px] mx-auto"
+                    className="text-xs leading-relaxed max-w-[220px] mx-auto mb-4"
                     style={{ color: "var(--color-text-secondary)" }}
                   >
                     Scratch your daily lucky card or get bonus scratch cards
@@ -356,53 +457,17 @@ export function HeroSection({ onDownload }) {
                   </p>
                 </div>
 
-                <div
-                  onClick={() => setIsScratched(true)}
-                  className="relative w-full h-32 rounded-xl border-2 border-dashed cursor-pointer flex flex-col items-center justify-center p-3 text-center overflow-hidden transition-all hover:scale-[1.02]"
-                  style={{
-                    background:
-                      "linear-gradient(90deg, rgba(255,255,255,0.96), rgba(245,245,245,0.96))",
-                    borderColor: "rgba(212,175,55,0.6)",
-                  }}
-                >
-                  {!isScratched ? (
-                    <div className="space-y-1">
-                      <Sparkles
-                        className="w-7 h-7 mx-auto animate-pulse"
-                        style={{ color: "var(--color-primary-gold)" }}
-                      />
-                      <span
-                        className="text-xs font-black block uppercase"
-                        style={{ color: "var(--color-primary-gold)" }}
-                      >
-                        Click To Scratch Card
-                      </span>
-                      <span
-                        className="text-[10px] block"
-                        style={{ color: "var(--color-text-muted)" }}
-                      >
-                        Uncover Instant Bonus
-                      </span>
-                    </div>
-                  ) : (
-                    <div className="space-y-1 animate-fade-in">
-                      <span
-                        className="text-2xl font-black block"
-                        style={{ color: "var(--color-primary-gold)" }}
-                      >
-                        + ₹100 BONUS
-                      </span>
-                      <span
-                        className="text-[11px] font-bold block"
-                        style={{ color: "var(--color-success)" }}
-                      >
-                        Points Added To Wallet!
-                      </span>
-                    </div>
-                  )}
+                <div className="my-2">
+                  {/* <ScratchCard /> */}
+                  <ScratchCard onReveal={handleCardReveal} />
                 </div>
 
-                <Button onClick={onDownload} size="sm" variant="emerald">
+                <Button
+                  onClick={onDownload}
+                  size="sm"
+                  variant="emerald"
+                  className="mt-4"
+                >
                   <Download className="w-3.5 h-3.5 stroke-[3]" />
                   Get Unlimited Cards On App
                 </Button>
