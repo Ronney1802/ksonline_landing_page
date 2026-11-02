@@ -24,33 +24,34 @@ export function ScratchCard({ onReveal }) {
 
     ctx.globalCompositeOperation = "source-over";
 
+    // Rich diagonal gold gradient scratch surface matching root variables
     const scratchGradient = ctx.createLinearGradient(0, 0, width, height);
-    scratchGradient.addColorStop(0, getThemeColor("--color-pure-platinum"));
-    scratchGradient.addColorStop(0.2, getThemeColor("--color-white"));
-    scratchGradient.addColorStop(
-      0.45,
-      getThemeColor("--color-metallic-silver"),
-    );
-    scratchGradient.addColorStop(0.7, getThemeColor("--color-pure-platinum"));
-    scratchGradient.addColorStop(1, getThemeColor("--color-metallic-silver"));
+    scratchGradient.addColorStop(0, getThemeColor("--color-deep-gold"));
+    scratchGradient.addColorStop(0.3, getThemeColor("--color-primary-gold"));
+    scratchGradient.addColorStop(0.6, getThemeColor("--color-rich-gold"));
+    scratchGradient.addColorStop(0.85, getThemeColor("--color-primary-gold"));
+    scratchGradient.addColorStop(1, getThemeColor("--color-deep-gold"));
     ctx.fillStyle = scratchGradient;
     ctx.fillRect(0, 0, width, height);
 
-    const sheen = ctx.createLinearGradient(0, 0, width, 0);
+    // Sheen overlay effect
+    const sheen = ctx.createLinearGradient(0, 0, width, height);
     sheen.addColorStop(0, getThemeColor("--color-white-veil"));
-    sheen.addColorStop(0.18, getThemeColor("--color-white"));
-    sheen.addColorStop(0.32, getThemeColor("--color-white-frost"));
-    sheen.addColorStop(0.72, getThemeColor("--color-white-soft"));
+    sheen.addColorStop(0.25, getThemeColor("--color-white-frost"));
+    sheen.addColorStop(0.5, getThemeColor("--color-white-veil"));
+    sheen.addColorStop(0.75, getThemeColor("--color-white-frost"));
     sheen.addColorStop(1, getThemeColor("--color-white-veil"));
     ctx.fillStyle = sheen;
     ctx.fillRect(0, 0, width, height);
 
-    ctx.fillStyle = getThemeColor("--color-text-secondary");
-    ctx.font = "800 18px sans-serif";
+    // Foil text label updated to dark gold color (--color-deep-gold)
+    ctx.fillStyle = getThemeColor("--color-deep-gold");
+    ctx.font = "800 15px sans-serif";
     ctx.textAlign = "center";
-    ctx.shadowColor = "transparent";
-    ctx.shadowBlur = 0;
-    ctx.fillText(" SCRATCH CARD ", width / 2, height / 2 + 6);
+    ctx.textBaseline = "middle";
+    ctx.shadowColor = getThemeColor("--color-white-veil");
+    ctx.shadowBlur = 3;
+    ctx.fillText("★ VIP GOLD PASS ★", width / 2, height / 2);
     ctx.shadowBlur = 0;
 
     setIsRevealed(false);
@@ -84,7 +85,7 @@ export function ScratchCard({ onReveal }) {
     // Set composition to erase pixels
     ctx.globalCompositeOperation = "destination-out";
     ctx.beginPath();
-    ctx.arc(x, y, 16, 0, Math.PI * 2);
+    ctx.arc(x, y, 18, 0, Math.PI * 2);
     ctx.fill();
 
     checkScratchPercentage();
@@ -112,7 +113,7 @@ export function ScratchCard({ onReveal }) {
 
       // Trigger modal popup with the reward amount
       if (onReveal) {
-        onReveal("+ ₹100 BONUS!");
+        onReveal("25");
       }
     }
   };
@@ -126,20 +127,20 @@ export function ScratchCard({ onReveal }) {
     setIsScratching(false);
   };
 
-  const prizeText = "+ ₹100 BONUS!";
+  const prizeText = "+ ₹25 BONUS!";
 
   return (
     <div
-      className="relative w-full h-32 rounded-xl overflow-hidden shadow-inner flex items-center justify-center select-none border"
+      className="relative w-full h-36 rounded-2xl overflow-hidden flex items-center justify-center select-none border shadow-md"
       style={{
         background:
-          "linear-gradient(135deg, var(--color-login-warm-white) 0%, var(--color-login-pale-gold) 28%, var(--color-login-button-light) 60%, var(--color-login-coin-circle) 100%)",
-        borderColor: "var(--color-success-border)",
+          "linear-gradient(135deg, var(--color-surface-ivory) 0%, var(--color-login-warm-white) 50%, var(--color-surface) 100%)",
+        borderColor: "var(--color-primary-gold-border-bright)",
         boxShadow:
-          "0 12px 22px var(--color-success-soft), inset 0 1px 0 var(--color-white-over)",
+          "0 10px 20px var(--color-primary-gold-glow), inset 0 1px 0 var(--color-white-over)",
       }}
     >
-      {/* Inline styles for the sequential character bounce */}
+      {/* Inline styles for sequential character bounce */}
       <style>{`
         @keyframes charBounce {
           0%, 100% { transform: translateY(0); }
@@ -151,17 +152,23 @@ export function ScratchCard({ onReveal }) {
         }
       `}</style>
 
-      {/* 1. Underlying Prize Layer */}
+      {/* 1. Underlying Prize Layer with Lighter White/Gold Gradient */}
       <div
-        className="absolute inset-0 flex flex-col items-center justify-center p-3 text-center space-y-1"
+        className="absolute inset-0 flex flex-col items-center justify-center p-3 text-center space-y-1 rounded-2xl"
         style={{
           background:
-            "linear-gradient(135deg, var(--color-login-warm-white) 0%, var(--color-success) 32%, var(--color-metallic-silver) 62%, var(--color-pure-platinum) 100%)",
+            "linear-gradient(135deg, var(--color-surface-ivory) 0%, var(--color-login-warm-white) 50%, var(--color-surface) 100%)",
         }}
       >
         <span
-          className="text-xl font-black tracking-wide flex"
-          style={{ color: "var(--color-text-primary)" }}
+          className="text-xs font-bold mb-1 uppercase tracking-wider"
+          style={{ color: "var(--color-text-muted)" }}
+        >
+          Congratulations!
+        </span>
+        <span
+          className="text-2xl font-black tracking-wide flex"
+          style={{ color: "var(--color-deep-gold)" }}
         >
           {prizeText.split("").map((char, index) => (
             <span
@@ -182,9 +189,9 @@ export function ScratchCard({ onReveal }) {
       {!isRevealed && (
         <canvas
           ref={canvasRef}
-          width={280}
-          height={128}
-          className="absolute inset-0 w-full h-full cursor-crosshair touch-none z-10"
+          width={320}
+          height={144}
+          className="absolute inset-0 w-full h-full cursor-crosshair touch-none z-10 rounded-xl"
           onMouseDown={handleMouseDown}
           onMouseMove={scratch}
           onMouseUp={handleMouseUp}

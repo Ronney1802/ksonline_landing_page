@@ -1,12 +1,47 @@
-import { Download, Gift, Smartphone, X } from "lucide-react";
+import {
+  Download,
+  FaceSlightlyFrowning,
+  Gift,
+  Smartphone,
+  X,
+} from "lucide-react";
 import { Button } from "./Button";
-// import { triggerAppRedirection } from "../utils/appLauncher";
 
-export function BonusModal({ isOpen, onClose, rewardText, onDownload }) {
+export function BonusModal({ isOpen, onClose, rewardText, onDownload, type }) {
   if (!isOpen) return null;
 
-  // Check if device is Android
   const isAndroid = /Android/i.test(navigator.userAgent);
+  const isLoss = rewardText === "Better Luck Next Time!";
+
+  // Dynamic content configuration based on win/loss state
+  const contentConfig = {
+    loss: {
+      icon: (
+        <FaceSlightlyFrowning
+          className="w-10 h-10 animate-shake"
+          style={{
+            animation: "shake 2s ease-in-out infinite",
+          }}
+        />
+      ),
+      headerTitle: "Better Luck Next Time! 💔",
+      headerColor: "var(--color-tilak-red)",
+      message: "There is no bonus to claim this time. Try your luck next time!",
+      showRewardBox: false,
+    },
+    win: {
+      icon: <Gift className="w-8 h-8 animate-bounce" />,
+      headerTitle: "Congratulations!",
+      headerColor: "var(--color-text-muted)",
+      message:
+        type === "scratch"
+          ? "Add this scratch card bonus straight into your wallet instantly by opening or installing the official app!"
+          : "Add these coins straight into your wallet instantly by opening or installing the official app!",
+      showRewardBox: true,
+    },
+  };
+
+  const currentConfig = isLoss ? contentConfig.loss : contentConfig.win;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in">
@@ -40,53 +75,56 @@ export function BonusModal({ isOpen, onClose, rewardText, onDownload }) {
             color: "var(--color-primary-gold)",
           }}
         >
-          <Gift className="w-8 h-8 animate-bounce" />
+          {currentConfig.icon}
         </div>
 
-        {/* Reward Display */}
+        {/* Dynamic Reward Header & Box */}
         <h3
-          className="text-xs uppercase font-extrabold tracking-widest mb-1"
-          style={{ color: "var(--color-text-muted)" }}
+          className="text-sm uppercase font-extrabold tracking-widest mb-1"
+          style={{ color: currentConfig.headerColor }}
         >
-          Congratulations! You Won
+          {currentConfig.headerTitle}
         </h3>
-        <div
-          className="text-2xl sm:text-3xl font-black mb-4 py-2 px-4 rounded-xl border inline-block"
-          style={{
-            background: "var(--color-success-soft)",
-            borderColor: "var(--color-success-border)",
-            color: "var(--color-success)",
-          }}
-        >
-          {rewardText}
-        </div>
 
-        {/* Conditional Content based on Android vs Other Devices */}
+        {currentConfig.showRewardBox && (
+          <div
+            className="text-2xl sm:text-3xl font-black mb-4 py-2 px-4 rounded-xl border inline-block"
+            style={{
+              background: "var(--color-success-soft)",
+              borderColor: "var(--color-success-border)",
+              color: "var(--color-success)",
+            }}
+          >
+            <span className="text-5xl">💸</span>
+            <p className="text-lg font-bold">
+              {type === "scratch"
+                ? `You get ₹${rewardText} Bonus!`
+                : `You Won ${rewardText} Coins!`}
+            </p>
+          </div>
+        )}
+
+        {/* Clean Conditional Device & Action Render Block */}
         {isAndroid ? (
           <div>
             <p
               className="text-sm font-bold mb-6 leading-relaxed"
               style={{ color: "var(--color-text-primary)" }}
             >
-              Add this bonus point into your wallet instantly by opening or
-              installing the official app!
-              {/* Add this bonus point into your wallet instantly "Click" on the
-              button! */}
+              {currentConfig.message}
             </p>
 
-            <Button
-              // onClick={() => {
-              //   triggerAppRedirection();
-              //   onClose();
-              // }}
-              onClick={onDownload}
-              size="lg"
-              fullWidth
-              className="py-3 text-sm font-extrabold shadow-lg"
-            >
-              <Download className="w-4 h-4 stroke-[3]" />
-              CLAIM & ADD TO YOUR WALLET
-            </Button>
+            {!isLoss && (
+              <Button
+                onClick={onDownload}
+                size="lg"
+                fullWidth
+                className="py-3 text-sm font-extrabold shadow-lg"
+              >
+                <Download className="w-4 h-4 stroke-[3]" />
+                CLAIM & ADD TO YOUR WALLET
+              </Button>
+            )}
           </div>
         ) : (
           <div

@@ -3,7 +3,7 @@ import {
   ShieldCheck,
   Download,
   Gift,
-  Ticket,
+  Star,
   Sparkles,
   Users,
   ShipWheel,
@@ -20,15 +20,18 @@ export function HeroSection({ onDownload }) {
   // State to control modal visibility
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [wonReward, setWonReward] = useState("");
+  const [modalType, setModalType] = useState("spin");
 
   const handleRewardWon = (rewardText) => {
     setWonReward(rewardText);
+    setModalType("spin");
     setIsModalOpen(true);
   };
 
   // Handler for when scratch card is fully revealed
   const handleCardReveal = (rewardText) => {
     setWonReward(rewardText);
+    setModalType("scratch");
     setIsModalOpen(true);
   };
 
@@ -40,6 +43,7 @@ export function HeroSection({ onDownload }) {
         onClose={() => setIsModalOpen(false)}
         rewardText={wonReward}
         onDownload={onDownload}
+        type={modalType}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -211,8 +215,10 @@ export function HeroSection({ onDownload }) {
                 className="relative text-center flex flex-col justify-between p-6 sm:p-7 min-h-[440px]"
                 style={{
                   background:
-                    "linear-gradient(180deg, var(--color-surface-ivory), var(--color-white-soft))",
+                    "linear-gradient(180deg, var(--color-login-warm-white) 0%, var(--color-white-soft) 100%)",
                   borderColor: "var(--color-primary-gold-border-bright)",
+                  boxShadow:
+                    "0 20px 40px var(--color-primary-gold-glow), inset 0 1px 0 var(--color-white-over)",
                 }}
               >
                 <div className="absolute top-2 right-2">
@@ -226,7 +232,7 @@ export function HeroSection({ onDownload }) {
                     className="w-16 h-16 mx-auto rounded-2xl flex items-center justify-center mb-4 border-2"
                     style={{
                       background: "var(--color-primary-gold-soft)",
-                      borderColor: "var(--color-border-strong)",
+                      borderColor: "var(--color-primary-gold-border-strong)",
                       color: "var(--color-primary-gold)",
                     }}
                   >
@@ -243,8 +249,7 @@ export function HeroSection({ onDownload }) {
                     className="text-xs leading-relaxed max-w-[220px] mx-auto"
                     style={{ color: "var(--color-text-secondary)" }}
                   >
-                    Spin daily inside the app to win instant cash prizes,
-                    multipliers & exclusive rewards!
+                    Spin daily inside the app to win instant cash prizes.
                   </p>
                 </div>
 
@@ -256,6 +261,7 @@ export function HeroSection({ onDownload }) {
                   size="sm"
                   fullWidth
                   className="mt-2"
+                  variant="gold"
                 >
                   <Download className="w-3.5 h-3.5 stroke-[3]" />
                   DAILY SPIN & WIN IN APP
@@ -269,12 +275,14 @@ export function HeroSection({ onDownload }) {
                 className="relative text-center flex flex-col justify-between p-6 sm:p-7 min-h-[440px]"
                 style={{
                   background:
-                    "linear-gradient(180deg, var(--color-login-input-fill), var(--color-white-soft))",
-                  borderColor: "var(--color-success-border-strong)",
+                    "linear-gradient(145deg, var(--color-surface-ivory) 0%, var(--color-white-soft) 58%, var(--color-primary-gold-veil) 100%)",
+                  borderColor: "var(--color-primary-gold-border-bright)",
+                  boxShadow:
+                    "0 20px 40px var(--color-primary-gold-glow), inset 0 1px 0 var(--color-white-over)",
                 }}
               >
                 <div className="absolute top-2 right-2">
-                  <Badge icon={Gift} color="green">
+                  <Badge icon={Gift} color="amber">
                     DAILY BONUS
                   </Badge>
                 </div>
@@ -283,12 +291,12 @@ export function HeroSection({ onDownload }) {
                   <div
                     className="w-16 h-16 mx-auto rounded-2xl flex items-center justify-center mb-4 border-2"
                     style={{
-                      background: "var(--color-success-soft)",
-                      borderColor: "var(--color-success-border-strong)",
-                      color: "var(--color-success)",
+                      background: "var(--color-primary-gold-soft)",
+                      borderColor: "var(--color-primary-gold-border-strong)",
+                      color: "var(--color-primary-gold)",
                     }}
                   >
-                    <Ticket className="w-8 h-8 rotate-[-12deg]" />
+                    <Star className="w-8 h-8 rotate-[-12deg] fill-current" />
                   </div>
 
                   <h3
@@ -315,7 +323,7 @@ export function HeroSection({ onDownload }) {
                 <Button
                   onClick={onDownload}
                   size="sm"
-                  variant="emerald"
+                  variant="gold"
                   className="mt-4"
                 >
                   <Download className="w-3.5 h-3.5 stroke-[3]" />

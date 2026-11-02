@@ -117,3 +117,34 @@ select {
     scroll-behavior: auto !important;
   }
 }
+
+/* shake animation */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(-4px);
+  }
+  40%,
+  80% {
+    transform: translateX(4px);
+  }
+}
+
+/* Char Bounce */
+@keyframes charBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+.animate-char-bounce {
+  display: inline-block;
+  animation: charBounce 0.8s ease-in-out infinite;
+}
