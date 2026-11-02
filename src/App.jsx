@@ -23,7 +23,7 @@ export default function App() {
   };
 
   const handleDownloadAPK = () => {
-    window.open(Links.apkDownloadUrl);
+    window.open(`assets/download/${Links.apkDownloadUrl}`);
   };
 
   const handleOpenEmail = () => {
