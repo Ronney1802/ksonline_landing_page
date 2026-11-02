@@ -1,5 +1,5 @@
 import { Download, Gift, Smartphone, X } from "lucide-react";
-import { Button } from "./common/Button";
+import { Button } from "./Button";
 // import { triggerAppRedirection } from "../utils/appLauncher";
 
 export function BonusModal({ isOpen, onClose, rewardText, onDownload }) {
