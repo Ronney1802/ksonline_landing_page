@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import logo from "../assets/ksonline.png";
 
-export default function Footer({ onDownload, onWhatsAppClick, onCallClick }) {
+export default function Footer({ onDownload, onWhatsApp, onCall }) {
   return (
     <footer
       className="border-t py-4 px-4 text-center md:text-left"
@@ -73,7 +73,7 @@ export default function Footer({ onDownload, onWhatsAppClick, onCallClick }) {
 
         {/* Right Column: Contact & Support Details (Aligned to right-end on desktop) */}
         <div
-          className="flex flex-col items-center gap-3 md:pl-6 md:border-l md:text-right"
+          className="flex flex-col items-center gap-3 md:pl-6 md:border-l md:text-right pb-6 sm:pb-0"
           style={{ borderColor: "var(--color-primary-gold-soft-strong)" }}
         >
           <div
@@ -90,9 +90,9 @@ export default function Footer({ onDownload, onWhatsAppClick, onCallClick }) {
             Fast Response Time: Under 5 Minutes
             <Clock className="w-3.5 h-3.5" />
           </p>
-          <div className="flex flex-wrap items-center justify-center md:justify-end gap-3 pt-2">
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-3 pt-2 ">
             <button
-              onClick={onWhatsAppClick}
+              onClick={onWhatsApp}
               className="px-4 py-2 rounded-xl font-bold text-xs transition flex items-center gap-2 border hover:opacity-90"
               style={{
                 borderColor: "var(--color-primary-gold)",
@@ -103,7 +103,7 @@ export default function Footer({ onDownload, onWhatsAppClick, onCallClick }) {
               WhatsApp Help
             </button>
             <button
-              onClick={onCallClick}
+              onClick={onCall}
               className="px-4 py-2 rounded-xl font-bold text-xs transition flex items-center gap-2 border hover:opacity-90"
               style={{
                 borderColor: "var(--color-primary-gold)",
@@ -111,7 +111,7 @@ export default function Footer({ onDownload, onWhatsAppClick, onCallClick }) {
               }}
             >
               <PhoneCall className="w-4 h-4 text-sky-500" />
-              +91 9999999999
+              +91 XXXXXXXXXX
             </button>
           </div>
         </div>

@@ -8,17 +8,30 @@ import { PaymentMethodsSection } from "./components/PaymentMethodsSection";
 import { TestimonialsSection } from "./components/TestimonialsSection";
 import { FaqSection } from "./components/FaqSection";
 import Footer from "./components/Footer";
+import { Links } from "./utils/constant";
 
 export default function App() {
-  const handleDownloadAPK = () => {
+  const handleOpenWhatsApp = () => {
     const msg = encodeURIComponent(
-      "Hi KS Online, I want to download the KS ONLINE V2.0 App and claim my ₹25 signup bonus!",
+      "Hi KS Online, I want to learn about the app!",
     );
-    window.open(`https://wa.me/919999999999?text=${msg}`, "_blank");
+    window.open(`https://wa.me/${Links.whatsappNumber}?text=${msg}`, "_blank");
   };
 
   const handleOpenTelegram = () => {
-    window.open("https://t.me/ksonline_official", "_blank");
+    window.open(`https://t.me/${Links.telegramUsername}`, "_blank");
+  };
+
+  const handleDownloadAPK = () => {
+    window.open(Links.apkDownloadUrl);
+  };
+
+  const handleOpenEmail = () => {
+    window.location.href = `mailto:${Links.supportEmail}`;
+  };
+
+  const handleCalling = () => {
+    window.location.href = "tel:+91XXXXXXXXXX"; // Replace with your support phone number
   };
 
   return (
@@ -43,12 +56,8 @@ export default function App() {
 
       <LiveTicker />
       <Navbar onDownload={handleDownloadAPK} />
-
       <main className="relative z-10">
-        <HeroSection
-          onDownload={handleDownloadAPK}
-          onTelegram={handleOpenTelegram}
-        />
+        <HeroSection onDownload={handleDownloadAPK} />
         <GameRatesSection onDownload={handleDownloadAPK} />
         <FeaturesSection />
         <HowItWorksSection />
@@ -57,7 +66,13 @@ export default function App() {
         <FaqSection />
       </main>
 
-      <Footer onDownload={handleDownloadAPK} />
+      <Footer
+        onDownload={handleDownloadAPK}
+        onTelegram={handleOpenTelegram}
+        onWhatsApp={handleOpenWhatsApp}
+        onEmail={handleOpenEmail}
+        onCall={handleCalling}
+      />
     </div>
   );
 }
