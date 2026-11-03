@@ -12,16 +12,28 @@ export function SpinWheel({ onRewardWon }) {
 
   // 10 items matching the wheel layout
   const items = [
-    { label: "100", color: "#10b981", icon: Sparkles },
-    { label: "200", color: "#9254de", icon: Wallet },
-    { label: "Bad Luck", color: "#1e3a8a", icon: FaceSlightlyFrowning },
-    { label: "1000", color: "#b8860b", icon: Trophy },
-    { label: "300", color: "#10b981", icon: Sparkles },
-    { label: "Bad Luck", color: "#1e3a8a", icon: FaceSlightlyFrowning },
-    { label: "5000", color: "#b8860b", icon: Trophy },
-    { label: "500", color: "#9254de", icon: Wallet },
-    { label: "Bad Luck", color: "#1e3a8a", icon: FaceSlightlyFrowning },
-    { label: "1500", color: "#b8860b", icon: Trophy },
+    { label: "100", color: "var(--color-success)", icon: Sparkles },
+    { label: "200", color: "var(--color-purple)", icon: Wallet },
+    {
+      label: "Bad Luck",
+      color: "var(--color-royal-blue)",
+      icon: FaceSlightlyFrowning,
+    },
+    { label: "1000", color: "var(--color-deep-gold)", icon: Trophy },
+    { label: "300", color: "var(--color-success)", icon: Sparkles },
+    {
+      label: "Bad Luck",
+      color: "var(--color-royal-blue)",
+      icon: FaceSlightlyFrowning,
+    },
+    { label: "5000", color: "var(--color-deep-gold)", icon: Trophy },
+    { label: "500", color: "var(--color-purple)", icon: Wallet },
+    {
+      label: "Bad Luck",
+      color: "var(--color-royal-blue)",
+      icon: FaceSlightlyFrowning,
+    },
+    { label: "1500", color: "var(--color-deep-gold)", icon: Trophy },
   ];
 
   useEffect(() => {
@@ -160,8 +172,12 @@ export function SpinWheel({ onRewardWon }) {
                 style={{
                   left: `${x}%`,
                   top: `${y}%`,
-                  background: isOn ? "#f3e5ab" : "#b8860b",
-                  boxShadow: isOn ? "0 0 4px #d4af37" : "none",
+                  background: isOn
+                    ? "var(--color-rich-gold)"
+                    : "var(--color-deep-gold)",
+                  boxShadow: isOn
+                    ? "0 0 4px var(--color-primary-gold)"
+                    : "none",
                 }}
               />
             );
@@ -173,7 +189,7 @@ export function SpinWheel({ onRewardWon }) {
           className={`absolute -top-1.5 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[7px] border-l-transparent border-r-[7px] border-r-transparent border-t-[12px] z-30 drop-shadow-sm ${
             isSpinning ? "animate-bounce" : ""
           }`}
-          style={{ borderTopColor: "#b8860b" }}
+          style={{ borderTopColor: "var(--color-deep-gold)" }}
         ></div>
 
         {/* Multi-Segmented Wheel Element */}
@@ -218,8 +234,9 @@ export function SpinWheel({ onRewardWon }) {
             onClick={handleSpin}
             className={`w-8 h-8 rounded-full border-2 z-10 flex flex-col items-center justify-center shadow-md cursor-pointer `}
             style={{
-              background: "linear-gradient(135deg, #10b981, #087443)",
-              borderColor: "#ffffff",
+              background:
+                "linear-gradient(135deg, var(--color-success), color-mix(in srgb, var(--color-success), black 35%))",
+              borderColor: "var(--color-white)",
               boxShadow: "0 0 10px rgba(16, 185, 129, 0.6)",
             }}
           >

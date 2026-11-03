@@ -41,16 +41,16 @@ export default function App() {
           className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[500px] blur-[120px] rounded-full"
           style={{
             background:
-              "radial-gradient(circle, rgba(212,175,55,0.15), transparent 65%)",
+              "radial-gradient(circle, var(--color-primary-gold-glow-medium), transparent 65%)",
           }}
         />
         <div
           className="absolute top-[40%] -left-32 w-96 h-96 blur-[100px] rounded-full"
-          style={{ background: "rgba(37,99,235,0.08)" }}
+          style={{ background: "var(--color-cobalt-blue-glow-soft)" }}
         />
         <div
           className="absolute top-[70%] -right-32 w-96 h-96 blur-[100px] rounded-full"
-          style={{ background: "rgba(212,175,55,0.08)" }}
+          style={{ background: "var(--color-primary-gold-glow-soft)" }}
         />
       </div>
 
