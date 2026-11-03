@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { AlertCircle, Sparkles, Trophy, Wallet } from "lucide-react";
+import { FaceSlightlyFrowning, Sparkles, Trophy, Wallet } from "lucide-react";
 import wheelSpinAudio from "../../assets/wheelSpin.mp3";
 
 export function SpinWheel({ onRewardWon }) {
@@ -14,13 +14,13 @@ export function SpinWheel({ onRewardWon }) {
   const items = [
     { label: "100", color: "#10b981", icon: Sparkles },
     { label: "200", color: "#9254de", icon: Wallet },
-    { label: "Bad Luck", color: "#1e3a8a", icon: AlertCircle },
+    { label: "Bad Luck", color: "#1e3a8a", icon: FaceSlightlyFrowning },
     { label: "1000", color: "#b8860b", icon: Trophy },
     { label: "300", color: "#10b981", icon: Sparkles },
-    { label: "Bad Luck", color: "#1e3a8a", icon: AlertCircle },
+    { label: "Bad Luck", color: "#1e3a8a", icon: FaceSlightlyFrowning },
     { label: "5000", color: "#b8860b", icon: Trophy },
     { label: "500", color: "#9254de", icon: Wallet },
-    { label: "Bad Luck", color: "#1e3a8a", icon: AlertCircle },
+    { label: "Bad Luck", color: "#1e3a8a", icon: FaceSlightlyFrowning },
     { label: "1500", color: "#b8860b", icon: Trophy },
   ];
 
