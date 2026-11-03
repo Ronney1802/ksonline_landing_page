@@ -4,7 +4,13 @@ import { features } from "../data/gameData";
 
 export function FeaturesSection() {
   return (
-    <section className="py-16 bg-slate-950/70 border-y border-slate-800 relative">
+    <section
+      className="py-14 border-y relative"
+      style={{
+        background: "var(--color-white-glass)",
+        borderColor: "var(--color-primary-gold-soft-strong)",
+      }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           subtitle="ULTIMATE TRUST & SPEED"
@@ -16,14 +22,25 @@ export function FeaturesSection() {
             return (
               <Card key={idx} className="p-6">
                 <div
-                  className={`w-14 h-14 rounded-xl border flex items-center justify-center mb-6 ${item.bg} ${item.color}`}
+                  className="w-14 h-14 rounded-xl border flex items-center justify-center mb-6"
+                  style={{
+                    background: item.bg,
+                    borderColor: item.border,
+                    color: item.color,
+                  }}
                 >
                   <Icon className="w-7 h-7" />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">
+                <h3
+                  className="text-lg font-bold mb-2"
+                  style={{ color: "var(--color-text-primary)" }}
+                >
                   {item.title}
                 </h3>
-                <p className="text-sm text-slate-400 leading-relaxed">
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{ color: "var(--color-text-secondary)" }}
+                >
                   {item.desc}
                 </p>
               </Card>

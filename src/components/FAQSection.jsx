@@ -11,7 +11,13 @@ export function FaqSection() {
   };
 
   return (
-    <section className="py-16 bg-slate-950/90 border-t border-slate-800">
+    <section
+      className="py-14 border-t"
+      style={{
+        background: "var(--color-white-gold-soft)",
+        borderColor: "var(--color-primary-gold-soft-strong)",
+      }}
+    >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           subtitle="FREQUENTLY ASKED QUESTIONS"
@@ -23,21 +29,49 @@ export function FaqSection() {
             return (
               <div
                 key={idx}
-                className="rounded-2xl bg-gradient-to-r from-[#0a1228] to-[#0e1a38] border border-slate-800 overflow-hidden transition-all duration-300"
+                className="rounded-2xl border overflow-hidden transition-all duration-300"
+                style={{
+                  background: "var(--color-card)",
+                  borderColor: isOpen
+                    ? "var(--color-primary-gold-border-strong)"
+                    : "var(--color-primary-gold-border)",
+                  boxShadow: isOpen
+                    ? "0 12px 30px var(--color-primary-gold-soft)"
+                    : "0 6px 18px var(--color-mist-shadow)",
+                }}
               >
                 <button
                   onClick={() => toggleFaq(idx)}
-                  className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-white hover:text-amber-300"
+                  className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base transition-colors duration-200"
+                  style={{
+                    color: "var(--color-text-primary)",
+                    background: isOpen
+                      ? "var(--color-surface-alt)"
+                      : "transparent",
+                  }}
                 >
                   <span>{faq.q}</span>
                   {isOpen ? (
-                    <ChevronUp className="w-5 h-5 text-amber-400 shrink-0" />
+                    <ChevronUp
+                      className="w-5 h-5 shrink-0"
+                      style={{ color: "var(--color-primary-gold)" }}
+                    />
                   ) : (
-                    <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />
+                    <ChevronDown
+                      className="w-5 h-5 shrink-0"
+                      style={{ color: "var(--color-metallic-silver)" }}
+                    />
                   )}
                 </button>
                 {isOpen && (
-                  <div className="px-6 pb-4 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
+                  <div
+                    className="px-6 pb-4 text-xs sm:text-sm leading-relaxed border-t pt-3"
+                    style={{
+                      color: "var(--color-text-secondary)",
+                      borderColor: "var(--color-primary-gold-border)",
+                      background: "var(--color-surface-alt)",
+                    }}
+                  >
                     {faq.a}
                   </div>
                 )}

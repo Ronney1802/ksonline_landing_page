@@ -5,15 +5,32 @@ export function Badge({
   className = "",
 }) {
   const colorStyles = {
-    amber: "bg-amber-500/10 border-amber-400/40 text-amber-300",
-    green: "bg-emerald-500/10 border-emerald-400/40 text-emerald-300",
-    blue: "bg-blue-500/10 border-blue-400/40 text-blue-300",
-    red: "bg-red-600 text-white font-extrabold uppercase",
+    amber: {
+      backgroundColor: "var(--color-primary-gold-soft)",
+      borderColor: "var(--color-border-strong)",
+      color: "var(--color-text-primary)",
+    },
+    green: {
+      backgroundColor: "var(--color-success-soft)",
+      borderColor: "var(--color-success-border-strong)",
+      color: "var(--color-success)",
+    },
+    blue: {
+      backgroundColor: "var(--color-cobalt-blue-soft)",
+      borderColor: "var(--color-cobalt-blue-border)",
+      color: "var(--color-cobalt-blue)",
+    },
+    red: {
+      backgroundColor: "var(--color-tilak-red)",
+      borderColor: "transparent",
+      color: "var(--color-white)",
+    },
   };
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold border ${colorStyles[color]} ${className}`}
+      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold border ${className}`}
+      style={colorStyles[color]}
     >
       {Icon && <Icon className="w-3.5 h-3.5 shrink-0" />}
       {children}
