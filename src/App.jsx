@@ -31,7 +31,7 @@ export default function App() {
   };
 
   const handleCalling = () => {
-    window.location.href = "tel:+91XXXXXXXXXX"; // Replace with your support phone number
+    window.location.href = `tel:+${Links.whatsappNumber}`;
   };
 
   return (
